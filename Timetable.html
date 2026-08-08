@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub Portal - Time Table</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet"
+          href="style.css">
+
+
+    <style>
+
+        /* ================= TIME TABLE ================= */
+
+        .timetable-container {
+
+            width: 95%;
+
+            margin: 35px auto;
+
+            background: #e1e1da;
+
+            border: 1px solid #011935;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            box-sizing: border-box;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+
+            overflow-x: auto;
+
+        }
+
+
+        /* ================= HEADING ================= */
+
+        .timetable-title {
+
+            text-align: center;
+
+            color: #011935;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .timetable-title h2 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+        }
+
+
+        /* ================= ACADEMIC INFORMATION ================= */
+
+        .academic-info {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .academic-info th {
+
+            background: #011935;
+
+            color: white;
+
+            padding: 12px;
+
+            border: 1px solid #011935;
+
+            text-align: center;
+
+        }
+
+
+        /* ================= MAIN TABLE ================= */
+
+        .timetable {
+
+            width: 100%;
+
+            min-width: 1200px;
+
+            border-collapse: collapse;
+
+            background: white;
+
+        }
+
+
+        .timetable th {
+
+            background: #011935;
+
+            color: white;
+
+            border: 1px solid white;
+
+            padding: 12px 8px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+        }
+
+
+        .timetable td {
+
+            border: 1px solid #999;
+
+            padding: 12px 8px;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+            font-size: 13px;
+
+            line-height: 20px;
+
+        }
+
+
+        /* ================= DAY COLUMN ================= */
+
+        .timetable td:first-child {
+
+            background: #646f7e;
+
+            color: white;
+
+            font-weight: 600;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ================= ALTERNATE ROWS ================= */
+
+        .timetable tr:nth-child(even) td {
+
+            background: #f7f7f4;
+
+        }
+
+
+        .timetable tr:nth-child(even) td:first-child {
+
+            background: #646f7e;
+
+            color: white;
+
+        }
+
+
+        /* ================= HOVER ================= */
+
+        .timetable tr:hover td {
+
+            background: #d6e5f7;
+
+        }
+
+
+        .timetable tr:hover td:first-child {
+
+            background: #646f7e;
+
+            color: white;
+
+        }
+
+
+        /* ================= BREAK ================= */
+
+        .break {
+
+            background: #d6e5f7 !important;
+
+            color: #011935;
+
+            font-weight: bold;
+
+            writing-mode: vertical-rl;
+
+            text-orientation: mixed;
+
+        }
+
+
+        /* ================= PRACTICAL ================= */
+
+        .practical {
+
+            font-size: 12px;
+
+            line-height: 19px;
+
+        }
+
+
+        /* =================================================
+           PROFILE LOGO
+           Blue circle + white border + white person icon
+           ================================================= */
+
+        .profile {
+
+            width: 90px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        .profile a {
+
+            text-decoration: none;
+
+            display: block;
+
+        }
+
+
+        .profile-logo {
+
+            width: 72px;
+
+            height: 72px;
+
+            background-color: #315fa5;
+
+            border: 3px solid white;
+
+            border-radius: 50%;
+
+            position: relative;
+
+            box-sizing: border-box;
+
+            transition: 0.3s;
+
+        }
+
+
+        /* Person Head */
+
+        .profile-head {
+
+            width: 20px;
+
+            height: 20px;
+
+            background-color: white;
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            top: 13px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+        }
+
+
+        /* Person Body */
+
+        .profile-body {
+
+            width: 32px;
+
+            height: 20px;
+
+            background-color: white;
+
+            border-radius: 18px 18px 5px 5px;
+
+            position: absolute;
+
+            bottom: 12px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+        }
+
+
+        /* Logo Hover */
+
+        .profile-logo:hover {
+
+            transform: scale(1.08);
+
+        }
+
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-button {
+
+            text-align: center;
+
+            margin: 25px 0 5px;
+
+        }
+
+
+        .back-button a {
+
+            display: inline-block;
+
+            padding: 11px 25px;
+
+            background: #011935;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+
+        }
+
+
+        .back-button a:hover {
+
+            background: #2c5aa0;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            .timetable-container {
+
+                width: 95%;
+
+                padding: 15px;
+
+            }
+
+
+            .timetable-title h2 {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+
+        <div class="header-text">
+
+            <h1>StudentHub Portal</h1>
+
+        </div>
+
+
+        <!-- PROFILE LOGO -->
+
+        <div class="profile">
+
+            <a href="profile.html"
+               title="View Profile">
+
+                <div class="profile-logo">
+
+                    <div class="profile-head"></div>
+
+                    <div class="profile-body"></div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <a href="home.html">Home</a>
+
+    <a href="profile.html">Profile</a>
+
+    <a href="timetable.html">Time Table</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="about.html">About Us</a>
+
+</nav>
+
+
+<!-- ================= TIME TABLE CONTAINER ================= -->
+
+<div class="timetable-container">
+
+
+    <div class="timetable-title">
+
+        <h2>📅 Time Table</h2>
+
+    </div>
+
+
+    <!-- Academic Information -->
+
+    <table class="academic-info">
+
+        <tr>
+
+            <th>
+                Academic Year : 2026-27
+            </th>
+
+            <th>
+                Semester - 3 (Odd Term)
+            </th>
+
+            <th>
+                Division - 1
+            </th>
+
+        </tr>
+
+    </table>
+
+
+    <!-- ================= MAIN TIME TABLE ================= -->
+
+    <table class="timetable">
+
+
+        <tr>
+
+            <th>Day / Time</th>
+
+            <th>
+                9:10 AM<br>
+                10:10 AM
+            </th>
+
+            <th>
+                10:10 AM<br>
+                11:10 AM
+            </th>
+
+            <th>
+                11:10 AM<br>
+                12:10 PM
+            </th>
+
+            <th>
+                12:10 PM<br>
+                1:10 PM
+            </th>
+
+            <th>
+                1:10 PM<br>
+                2:10 PM
+            </th>
+
+            <th>
+                2:10 PM<br>
+                2:20 PM
+            </th>
+
+            <th>
+                2:20 PM<br>
+                3:20 PM
+            </th>
+
+            <th>
+                3:20 PM<br>
+                4:20 PM
+            </th>
+
+        </tr>
+
+
+        <!-- ================= MONDAY ================= -->
+
+        <tr>
+
+            <td>Monday</td>
+
+            <td colspan="2">
+
+                <b>WDF</b><br>
+                Theory
+
+            </td>
+
+
+            <td rowspan="6"
+                class="break">
+
+                BREAK
+
+            </td>
+
+
+            <td>
+
+                <b>FCN</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>FDSA</b><br>
+                Theory
+
+            </td>
+
+
+            <td rowspan="6"
+                class="break">
+
+                BREAK
+
+            </td>
+
+
+            <td colspan="2"
+                class="practical">
+
+                A1 Batch - ITUC201 - FCN (P)<br>
+
+                B1 Batch - ITUC201 - FCN (P)<br>
+
+                C1 Batch - CEUE203 - OOP (P)<br>
+
+                D1 Batch - CEUE203 - OOP (P)
+
+            </td>
+
+        </tr>
+
+
+        <!-- ================= TUESDAY ================= -->
+
+        <tr>
+
+            <td>Tuesday</td>
+
+
+            <td colspan="2"
+                class="practical">
+
+                A1 Batch - CEUE203 - OOP (P)<br>
+
+                B1 Batch - CEUE203 - OOP (P)<br>
+
+                C1 Batch - ITUE203 - WDF (P)<br>
+
+                D1 Batch - ITUE203 - WDF (P)
+
+            </td>
+
+
+            <td>
+
+                <b>WDF</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>OOP</b><br>
+                Theory
+
+            </td>
+
+
+            <td colspan="2">
+
+                <b>HS</b>
+
+            </td>
+
+        </tr>
+
+
+        <!-- ================= WEDNESDAY ================= -->
+
+        <tr>
+
+            <td>Wednesday</td>
+
+
+            <td colspan="2"
+                class="practical">
+
+                A1 Batch - ITUE203 - WDF (P)<br>
+
+                B1 Batch - ITUE203 - WDF (P)<br>
+
+                C1 Batch - ITUC201 - FCN (P)<br>
+
+                D1 Batch - ITUC201 - FCN (P)
+
+            </td>
+
+
+            <td colspan="2">
+
+                <b>Student Counselling</b>
+
+            </td>
+
+
+            <td>
+
+                <b>Maths</b>
+
+            </td>
+
+
+            <td>
+
+                <b>FCN</b><br>
+                Theory
+
+            </td>
+
+        </tr>
+
+
+        <!-- ================= THURSDAY ================= -->
+
+        <tr>
+
+            <td>Thursday</td>
+
+
+            <td>
+
+                <b>FCN</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>FDSA</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>WDF</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>Maths</b>
+
+            </td>
+
+
+            <td colspan="2"
+                class="practical">
+
+                A1 Batch - CSUC201 - FDSA (P)<br>
+
+                B1 Batch - CSUC201 - FDSA (P)<br>
+
+                C1 Batch - ITUE203 - WDF (P)<br>
+
+                D1 Batch - ITUE203 - WDF (P)
+
+            </td>
+
+        </tr>
+
+
+        <!-- ================= FRIDAY ================= -->
+
+        <tr>
+
+            <td>Friday</td>
+
+
+            <td>
+
+                <b>FDSA</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>Maths</b>
+
+            </td>
+
+
+            <td>
+
+                <b>OOP</b><br>
+                Theory
+
+            </td>
+
+
+            <td>
+
+                <b>FCN</b><br>
+                Theory
+
+            </td>
+
+
+            <td colspan="2"
+                class="practical">
+
+                A1 Batch - ITUE203 - WDF (P)<br>
+
+                B1 Batch - ITUE203 - WDF (P)<br>
+
+                C1 Batch - CSUC201 - FDSA (P)<br>
+
+                D1 Batch - CSUC201 - FDSA (P)
+
+            </td>
+
+        </tr>
+
+
+        <!-- ================= SATURDAY ================= -->
+
+        <tr>
+
+            <td>Saturday</td>
+
+
+            <td colspan="2">
+
+                <b>University Elective 1</b>
+
+            </td>
+
+
+            <td colspan="2">
+
+                <b>University Elective 1</b>
+
+            </td>
+
+
+            <td colspan="2">
+
+                <b>Skill Enhancement</b>
+
+            </td>
+
+        </tr>
+
+
+    </table>
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    <div class="back-button">
+
+        <a href="dashboard.html">
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        <b>StudentHub Portal</b>
+    </p>
+
+    <p>
+        Email : studenthub@gmail.com
+    </p>
+
+    <p>
+        Phone : +91 9876543210
+    </p>
+
+    <p>
+        © 2026 StudentHub Portal
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

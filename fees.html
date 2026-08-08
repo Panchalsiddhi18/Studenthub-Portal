@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>StudentHub Portal - Fees Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.fees-container{
+    width:850px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border:1px solid gray;
+}
+
+.fees-container h2{
+    text-align:center;
+    color:#2c5aa0;
+    margin-bottom:30px;
+}
+
+
+/* Student Information */
+
+.student-info{
+    border:1px solid gray;
+    background:#eef5ff;
+    padding:15px;
+    margin-bottom:25px;
+}
+
+.student-info p{
+    margin:8px 0;
+}
+
+
+/* Fees Table */
+
+.fees-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.fees-table th{
+    background:#2c5aa0;
+    color:white;
+    padding:12px;
+    border:1px solid gray;
+}
+
+.fees-table td{
+    padding:12px;
+    text-align:center;
+    border:1px solid gray;
+    background:#fafafa;
+}
+
+
+/* Fees Summary */
+
+.fees-summary{
+    margin-top:25px;
+    padding:20px;
+    background:#eef5ff;
+    border:1px solid gray;
+}
+
+.fees-summary h3{
+    color:#2c5aa0;
+    margin-top:0;
+}
+
+.fees-summary p{
+    margin:10px 0;
+}
+
+
+/* Payment Status */
+
+.status{
+    margin-top:20px;
+    padding:15px;
+    text-align:center;
+    border:1px solid gray;
+    background:#f9f9f9;
+}
+
+.status p{
+    margin:0;
+}
+
+.status b{
+    color:#2c5aa0;
+}
+
+
+/* Back Button */
+
+.back-button{
+    text-align:center;
+    margin-top:25px;
+}
+
+.back-button a{
+    display:inline-block;
+    padding:10px 25px;
+    background:#2c5aa0;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.back-button a:hover{
+    background:#dcecff;
+    color:#2c5aa0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="header-text">
+
+            <h1>StudentHub Portal</h1>
+
+        </div>
+
+        <div class="profile">
+
+    <a href="profile.html" title="View Profile">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 16 16">
+
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+            <path fill-rule="evenodd"
+                  d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+
+        </svg>
+
+    </a>
+
+</div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <a href="home.html">Home</a>
+
+    <a href="profile.html">Profile</a>
+
+    <a href="timetable.html">Time Table</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="about.html">About Us</a>
+
+</nav>
+
+
+<!-- ================= FEES ================= -->
+
+<div class="fees-container">
+
+    <h2>💰 Fees Details</h2>
+
+
+    <div class="student-info">
+
+        <p><b>Student Name :</b> Siddhi Panchal</p>
+
+        <p><b>Enrollment No. :</b> 25CE066</p>
+
+        <p><b>Semester :</b> 3rd Semester</p>
+
+        <p><b>Academic Year :</b> 2026-27</p>
+
+    </div>
+
+
+    <table class="fees-table">
+
+        <tr>
+
+            <th>Fee Type</th>
+
+            <th>Total Amount</th>
+
+            <th>Paid Amount</th>
+
+            <th>Remaining</th>
+
+            <th>Status</th>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Tuition Fees</td>
+
+            <td>₹50,000</td>
+
+            <td>₹50,000</td>
+
+            <td>₹0</td>
+
+            <td>Paid</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Examination Fees</td>
+
+            <td>₹2,500</td>
+
+            <td>₹2,500</td>
+
+            <td>₹0</td>
+
+            <td>Paid</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Library Fees</td>
+
+            <td>₹1,000</td>
+
+            <td>₹1,000</td>
+
+            <td>₹0</td>
+
+            <td>Paid</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Other Fees</td>
+
+            <td>₹1,500</td>
+
+            <td>₹1,000</td>
+
+            <td>₹500</td>
+
+            <td>Pending</td>
+
+        </tr>
+
+    </table>
+
+
+    <div class="fees-summary">
+
+        <h3>Fee Summary</h3>
+
+        <p><b>Total Fees :</b> ₹55,000</p>
+
+        <p><b>Total Paid :</b> ₹54,500</p>
+
+        <p><b>Remaining Fees :</b> ₹500</p>
+
+    </div>
+
+
+    <div class="status">
+
+        <p><b>Payment Status : Partially Paid</b></p>
+
+    </div>
+
+
+    <!-- GO TO DASHBOARD -->
+
+    <div class="back-button">
+
+        <a href="dashboard.html">← Back to Dashboard</a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p><b>StudentHub Portal</b></p>
+
+    <p>Email : studenthub@gmail.com</p>
+
+    <p>Phone : +91 9876543210</p>
+
+    <p>© 2026 StudentHub Portal</p>
+
+</footer>
+
+
+</body>
+
+</html>

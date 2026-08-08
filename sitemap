@@ -1,0 +1,15 @@
+StudentHub Portal
+│
+└── Home Page
+    ├── Login
+    ├── Registration
+    ├── Dashboard
+    │   ├── Timetable
+    │   ├── Attendance
+    │   ├── Fees
+    │   |__ Result
+    ├── About Us
+    └── Contact Us
+    ├── Events
+    ├── Feedback
+    └── FAQ

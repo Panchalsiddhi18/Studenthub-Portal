@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>StudentHub Portal - Attendance</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.attendance-container{
+    width:850px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border:1px solid gray;
+}
+
+.attendance-container h2{
+    text-align:center;
+    color:#2c5aa0;
+    margin-bottom:30px;
+}
+
+
+/* Student Information */
+
+.student-info{
+    border:1px solid gray;
+    background:#eef5ff;
+    padding:15px;
+    margin-bottom:25px;
+}
+
+.student-info p{
+    margin:8px 0;
+}
+
+
+/* Attendance Table */
+
+.attendance-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.attendance-table th{
+    background:#2c5aa0;
+    color:white;
+    padding:12px;
+    border:1px solid gray;
+}
+
+.attendance-table td{
+    padding:12px;
+    text-align:center;
+    border:1px solid gray;
+    background:#fafafa;
+}
+
+
+/* Attendance Summary */
+
+.attendance-summary{
+    margin-top:25px;
+    padding:20px;
+    background:#eef5ff;
+    border:1px solid gray;
+    text-align:center;
+}
+
+.attendance-summary h3{
+    color:#2c5aa0;
+    margin-top:0;
+}
+
+.percentage{
+    font-size:28px;
+    font-weight:bold;
+    color:#2c5aa0;
+}
+
+
+/* Back Button */
+
+.back-button{
+    text-align:center;
+    margin-top:25px;
+}
+
+.back-button a{
+    display:inline-block;
+    padding:10px 25px;
+    background:#2c5aa0;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.back-button a:hover{
+    background:#dcecff;
+    color:#2c5aa0;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+        <div class="header-text">
+
+            <h1>StudentHub Portal</h1>
+
+        </div>
+
+        <div class="profile">
+
+    <a href="profile.html" title="View Profile">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 16 16">
+
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+            <path fill-rule="evenodd"
+                  d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+
+        </svg>
+
+    </a>
+
+</div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <a href="home.html">Home</a>
+
+    <a href="profile.html">Profile</a>
+
+    <a href="timetable.html">Time Table</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="about.html">About Us</a>
+
+</nav>
+
+
+<!-- ================= ATTENDANCE ================= -->
+
+<div class="attendance-container">
+
+    <h2>📊 Attendance Details</h2>
+
+
+    <div class="student-info">
+
+        <p><b>Student Name :</b> Siddhi Panchal</p>
+
+        <p><b>Enrollment No. :</b> 25CE066</p>
+
+        <p><b>Semester :</b> 3rd Semester</p>
+
+        <p><b>Academic Year :</b> 2026-27</p>
+
+    </div>
+
+
+    <table class="attendance-table">
+
+        <tr>
+
+            <th>Subject</th>
+
+            <th>Total Lectures</th>
+
+            <th>Present</th>
+
+            <th>Absent</th>
+
+            <th>Attendance</th>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Java</td>
+
+            <td>40</td>
+
+            <td>36</td>
+
+            <td>4</td>
+
+            <td>90%</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Data Structures And Algorithm</td>
+
+            <td>45</td>
+
+            <td>40</td>
+
+            <td>5</td>
+
+            <td>89%</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Fundamentals of Computer Networks</td>
+
+            <td>38</td>
+
+            <td>34</td>
+
+            <td>4</td>
+
+            <td>89%</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Webdevlopment and Framework</td>
+
+            <td>42</td>
+
+            <td>38</td>
+
+            <td>4</td>
+
+            <td>90%</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Mathematics</td>
+
+            <td>40</td>
+
+            <td>35</td>
+
+            <td>5</td>
+
+            <td>88%</td>
+
+        </tr>
+
+    </table>
+
+
+    <div class="attendance-summary">
+
+        <h3>Overall Attendance</h3>
+
+        <div class="percentage">89%</div>
+
+        <p>Your overall attendance is up to date.</p>
+
+    </div>
+
+
+    <!-- GO TO DASHBOARD -->
+
+    <div class="back-button">
+
+        <a href="dashboard.html">← Back to Dashboard</a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p><b>StudentHub Portal</b></p>
+
+    <p>Email : studenthub@gmail.com</p>
+
+    <p>Phone : +91 9876543210</p>
+
+    <p>© 2026 StudentHub Portal</p>
+
+</footer>
+
+
+</body>
+
+</html>

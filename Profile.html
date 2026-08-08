@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub Portal - Profile</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- Your CSS -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+
+    <style>
+
+        /* ================= PROFILE BOX ================= */
+
+        .profile-box {
+
+            width: 750px;
+
+            max-width: 90%;
+
+            margin: 40px auto;
+
+            background-color: #e1e1da;
+
+            border: 1px solid #011935;
+
+            border-radius: 10px;
+
+            padding: 30px;
+
+            box-sizing: border-box;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        /* ================= TITLE ================= */
+
+        .profile-title {
+
+            width: 300px;
+
+            max-width: 90%;
+
+            margin: 0 auto 25px;
+
+            text-align: center;
+
+            border: 2px solid #011935;
+
+            border-radius: 8px;
+
+            padding: 10px;
+
+            font-weight: bold;
+
+            font-size: 22px;
+
+            color: #011935;
+
+            background-color: #f7f7f4;
+
+        }
+
+
+        /* ================= PHOTO ================= */
+
+        .photo {
+
+            text-align: center;
+
+            margin: 20px 0 30px;
+
+        }
+
+        .photo h3 {
+
+            color: #011935;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .circle {
+
+            width: 150px;
+
+            height: 150px;
+
+            border: 3px solid #2c5aa0;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            margin: auto;
+
+            background-color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .circle img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        /* Profile placeholder */
+
+        .profile-placeholder {
+
+            width: 70px;
+
+            height: 70px;
+
+            fill: #2c5aa0;
+
+        }
+
+
+        input[type=file] {
+
+            margin-top: 15px;
+
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+
+        /* ================= FORM TABLE ================= */
+
+        .profile-form {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+        }
+
+
+        .profile-form td {
+
+            padding: 8px;
+
+            vertical-align: middle;
+
+        }
+
+
+        .label {
+
+            width: 220px;
+
+            border: 2px solid #011935;
+
+            text-align: center;
+
+            font-weight: bold;
+
+            padding: 12px !important;
+
+            color: #011935;
+
+            background-color: #f7f7f4;
+
+        }
+
+
+        /* ================= INPUTS ================= */
+
+        .profile-form input[type=text],
+        .profile-form input[type=email],
+        .profile-form input[type=date],
+        .profile-form textarea {
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #999;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: 'Poppins', sans-serif;
+
+            outline: none;
+
+            box-sizing: border-box;
+
+            background-color: white;
+
+        }
+
+
+        .profile-form input[type=text]:focus,
+        .profile-form input[type=email]:focus,
+        .profile-form input[type=date]:focus,
+        .profile-form textarea:focus {
+
+            border: 2px solid #2c5aa0;
+
+        }
+
+
+        .profile-form textarea {
+
+            height: 80px;
+
+            resize: none;
+
+        }
+
+
+        /* ================= GENDER ================= */
+
+        .gender {
+
+            font-size: 15px;
+
+            color: #011935;
+
+        }
+
+        .gender input {
+
+            margin-right: 5px;
+
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+        }
+
+
+        .button input {
+
+            width: 180px;
+
+            padding: 11px;
+
+            background-color: #011935;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .button input:hover {
+
+            background-color: #2c5aa0;
+
+        }
+
+
+        /* ================= BACK BUTTON ================= */
+
+        .back-button {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+        }
+
+
+        .back-button a {
+
+            color: #2c5aa0;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+
+        .back-button a:hover {
+
+            color: #011935;
+
+            text-decoration: underline;
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .profile-box {
+
+                width: 95%;
+
+                max-width: 95%;
+
+                padding: 20px;
+
+            }
+
+
+            .profile-title {
+
+                width: 90%;
+
+            }
+
+
+            .profile-form {
+
+                display: block;
+
+            }
+
+
+            .profile-form tr {
+
+                display: block;
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .profile-form td {
+
+                display: block;
+
+                width: 100%;
+
+                box-sizing: border-box;
+
+            }
+
+
+            .label {
+
+                width: 100%;
+
+                margin-bottom: 5px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+
+        <div class="header-text">
+
+            <h1>StudentHub Portal</h1>
+
+        </div>
+
+
+        <!-- Profile Logo -->
+
+        <div class="profile">
+
+            <a href="profile.html"
+               title="View Profile">
+
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
+
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+
+                </svg>
+
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <a href="home.html">Home</a>
+
+    <a href="dashboard.html">Dashboard</a>
+
+    <a href="events.html">Events</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="about.html">About Us</a>
+
+</nav>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div class="profile-box">
+
+
+    <!-- Title -->
+
+    <div class="profile-title">
+
+        Student Profile
+
+    </div>
+
+
+    <!-- Profile Photo -->
+
+    <div class="photo">
+
+        <h3>Profile Photo</h3>
+
+
+        <div class="circle">
+
+            <!-- Default Profile Logo -->
+
+            <svg id="defaultProfile"
+                 class="profile-placeholder"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 16 16">
+
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+                <path fill-rule="evenodd"
+                      d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+
+            </svg>
+
+
+            <!-- Uploaded Image -->
+
+            <img id="preview"
+                 src=""
+                 alt="Profile Photo"
+                 style="display:none;">
+
+        </div>
+
+
+        <br>
+
+
+        <input
+            type="file"
+            id="profileImage"
+            accept="image/*"
+            onchange="loadImage(event)">
+
+    </div>
+
+
+    <!-- ================= FORM ================= -->
+
+    <form
+        onsubmit="updateProfile(event)">
+
+
+        <table class="profile-form">
+
+
+            <!-- Full Name -->
+
+            <tr>
+
+                <td class="label">
+                    Full Name
+                </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        placeholder="Enter Full Name"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Full Name')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Enrollment -->
+
+            <tr>
+
+                <td class="label">
+                    Enrollment Number
+                </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        placeholder="Enter Enrollment Number"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Enrollment Number')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Email -->
+
+            <tr>
+
+                <td class="label">
+                    Email
+                </td>
+
+                <td>
+
+                    <input
+                        type="email"
+                        placeholder="Enter Email Address"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Email Address')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Mobile -->
+
+            <tr>
+
+                <td class="label">
+                    Mobile Number
+                </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        placeholder="Enter Mobile Number"
+                        pattern="[0-9]{10}"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter a valid 10-digit Mobile Number')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Department -->
+
+            <tr>
+
+                <td class="label">
+                    Department
+                </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        placeholder="Enter Department"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Department')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Semester -->
+
+            <tr>
+
+                <td class="label">
+                    Semester
+                </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        placeholder="Enter Semester"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Semester')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Gender -->
+
+            <tr>
+
+                <td class="label">
+                    Gender
+                </td>
+
+                <td class="gender">
+
+                    <input
+                        type="radio"
+                        name="gender"
+                        required>
+
+                    Male
+
+                    &nbsp;&nbsp;
+
+                    <input
+                        type="radio"
+                        name="gender">
+
+                    Female
+
+                    &nbsp;&nbsp;
+
+                    <input
+                        type="radio"
+                        name="gender">
+
+                    Other
+
+                </td>
+
+            </tr>
+
+
+            <!-- Date of Birth -->
+
+            <tr>
+
+                <td class="label">
+                    Date of Birth
+                </td>
+
+                <td>
+
+                    <input
+                        type="date"
+                        required
+                        oninvalid="this.setCustomValidity('Please select your Date of Birth')"
+                        oninput="this.setCustomValidity('')">
+
+                </td>
+
+            </tr>
+
+
+            <!-- Address -->
+
+            <tr>
+
+                <td class="label">
+                    Address
+                </td>
+
+                <td>
+
+                    <textarea
+                        placeholder="Enter Address"
+                        required
+                        oninvalid="this.setCustomValidity('Please enter your Address')"
+                        oninput="this.setCustomValidity('')"></textarea>
+
+                </td>
+
+            </tr>
+
+
+        </table>
+
+
+        <!-- Update Button -->
+
+        <div class="button">
+
+            <input
+                type="submit"
+                value="Update Profile">
+
+        </div>
+
+
+    </form>
+
+
+    
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        <b>StudentHub Portal</b>
+    </p>
+
+    <p>
+        Email : studenthub@gmail.com
+    </p>
+
+    <p>
+        Phone : +91 9876543210
+    </p>
+
+    <p>
+        © 2026 StudentHub Portal
+    </p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+/* Profile Image Preview */
+
+function loadImage(event) {
+
+    var file =
+        event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+
+    var image =
+        document.getElementById("preview");
+
+    var defaultProfile =
+        document.getElementById("defaultProfile");
+
+
+    image.src =
+        URL.createObjectURL(file);
+
+
+    image.style.display =
+        "block";
+
+
+    defaultProfile.style.display =
+        "none";
+
+}
+
+
+/* Update Profile */
+
+function updateProfile(event) {
+
+    event.preventDefault();
+
+    alert("Profile updated successfully!");
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

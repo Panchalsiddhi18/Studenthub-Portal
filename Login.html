@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub Portal - Login</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- Your CSS -->
+
+    <link rel="stylesheet"
+          href="style.css">
+
+
+    <style>
+
+        /* ================= LOGIN BOX ================= */
+
+        .login-box {
+
+            width: 420px;
+
+            margin: 50px auto;
+
+            background-color: #e1e1da;
+
+            padding: 30px;
+
+            border: 1px solid #011935;
+
+            border-radius: 10px;
+
+            box-sizing: border-box;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        /* ================= LOGIN TITLE ================= */
+
+        .login-box h2 {
+
+            text-align: center;
+
+            color: #011935;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* ================= FORM ================= */
+
+        .login-form {
+
+            width: 100%;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #011935;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        /* ================= INPUT ================= */
+
+        .login-input {
+
+            width: 100%;
+
+            padding: 11px;
+
+            border: 1px solid gray;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            font-family: 'Poppins', sans-serif;
+
+            box-sizing: border-box;
+
+            background-color: white;
+
+        }
+
+
+        .login-input:focus {
+
+            border: 2px solid #2c5aa0;
+
+        }
+
+
+        /* ================= LOGIN BUTTON ================= */
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 11px;
+
+            background-color: #011935;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-weight: 600;
+
+            margin-top: 5px;
+
+        }
+
+
+        .login-button:hover {
+
+            background-color: #2c5aa0;
+
+        }
+
+
+        /* ================= LINKS ================= */
+
+        .links {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+        }
+
+
+        .links p {
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .links a {
+
+            text-decoration: none;
+
+            color: #2c5aa0;
+
+            font-weight: 600;
+
+        }
+
+
+        .links a:hover {
+
+            color: #011935;
+
+            text-decoration: underline;
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            .login-box {
+
+                width: 90%;
+
+                margin: 35px auto;
+
+                padding: 25px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="header-content">
+
+
+        <div class="header-text">
+
+            <h1>StudentHub Portal</h1>
+
+        </div>
+
+
+        <!-- Profile Logo -->
+
+        <div class="profile">
+
+            <a href="profile.html"
+               title="View Profile">
+
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
+
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+
+                </svg>
+
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <a href="home.html">Home</a>
+
+    <a href="registration.html">Registration</a>
+
+    <a href="about.html">About Us</a>
+
+    <a href="contact.html">Contact</a>
+
+</nav>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div class="login-box">
+
+
+    <h2>🔐 Login</h2>
+
+
+    <form onsubmit="saveData(); return false;"
+          class="login-form">
+
+
+        <!-- Username -->
+
+        <div class="form-group">
+
+            <label for="username">
+                Email / Username :
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                class="login-input"
+                placeholder="Enter Email or Username"
+                required
+                oninvalid="this.setCustomValidity('Please enter your Email or Username')"
+                oninput="this.setCustomValidity('')">
+
+        </div>
+
+
+        <!-- Password -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password :
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                class="login-input"
+                placeholder="Enter Password"
+                required
+                oninvalid="this.setCustomValidity('Please enter your Password')"
+                oninput="this.setCustomValidity('')">
+
+        </div>
+
+
+        <!-- Login Button -->
+
+        <button type="submit"
+                class="login-button">
+
+            Login
+
+        </button>
+
+
+    </form>
+
+
+    <!-- Registration Link -->
+
+    <div class="links">
+
+        <p>
+            Don't have an account?
+        </p>
+
+        <a href="registration.html">
+            Create New Account
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        <b>StudentHub Portal</b>
+    </p>
+
+    <p>
+        Email : studenthub@gmail.com
+    </p>
+
+    <p>
+        Phone : +91 9876543210
+    </p>
+
+    <p>
+        © 2026 StudentHub Portal
+    </p>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+function saveData() {
+
+    var username =
+        document.getElementById("username").value;
+
+    var password =
+        document.getElementById("password").value;
+
+
+    localStorage.setItem(
+        "username",
+        username
+    );
+
+
+    localStorage.setItem(
+        "password",
+        password
+    );
+
+
+    window.location.href =
+        "logindetails.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
