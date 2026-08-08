@@ -1,3 +1,8 @@
+# StudentHub Portal
+
+## Project Description
+
+StudentHub Portal is a simple student-oriented web portal designed to provide important college and academic information in one place.
 StudentHub Portal
 
 Project Title
@@ -378,3 +383,5 @@ Author
 StudentHub Portal Project
 
 Academic Project – Web Development Fundamentals
+=======
+# Studenthub-Portal
