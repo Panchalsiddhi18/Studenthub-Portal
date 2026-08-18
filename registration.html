@@ -10,7 +10,8 @@
 
     <title>StudentHub Portal - Registration</title>
 
-    <!-- Google Font -->
+
+    <!-- ================= GOOGLE FONT ================= -->
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -22,15 +23,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Your CSS -->
+
+    <!-- ================= YOUR CSS ================= -->
 
     <link rel="stylesheet"
           href="style.css">
 
 
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="script.js"></script>
+
+
     <style>
 
-        /* Registration Box */
+        /* =====================================================
+           REGISTRATION BOX
+        ===================================================== */
 
         .registration-box {
 
@@ -55,7 +64,9 @@
         }
 
 
-        /* Title */
+        /* =====================================================
+           TITLE
+        ===================================================== */
 
         .registration-title {
 
@@ -77,7 +88,9 @@
         }
 
 
-        /* Form */
+        /* =====================================================
+           FORM
+        ===================================================== */
 
         .registration-form {
 
@@ -106,7 +119,9 @@
         }
 
 
-        /* Inputs */
+        /* =====================================================
+           INPUTS
+        ===================================================== */
 
         .registration-input {
 
@@ -138,7 +153,9 @@
         }
 
 
-        /* Gender */
+        /* =====================================================
+           GENDER
+        ===================================================== */
 
         .gender {
 
@@ -156,7 +173,9 @@
         }
 
 
-        /* Terms */
+        /* =====================================================
+           TERMS
+        ===================================================== */
 
         .terms {
 
@@ -196,7 +215,9 @@
         }
 
 
-        /* Register Button */
+        /* =====================================================
+           REGISTER BUTTON
+        ===================================================== */
 
         .register-button {
 
@@ -232,7 +253,9 @@
         }
 
 
-        /* Login Link */
+        /* =====================================================
+           LOGIN LINK
+        ===================================================== */
 
         .login-link {
 
@@ -263,7 +286,9 @@
         }
 
 
-        /* Mobile */
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 600px) {
 
@@ -287,7 +312,9 @@
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -308,6 +335,7 @@
             <a href="profile.html"
                title="View Profile">
 
+
                 <svg xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 16 16">
 
@@ -318,34 +346,30 @@
 
                 </svg>
 
+
             </a>
 
         </div>
+
 
     </div>
 
 </header>
 
 
-<!-- ================= NAVIGATION ================= -->
-
-<nav>
-
-    <a href="home.html">Home</a>
-
-    <a href="login.html">Login</a>
-
-    <a href="about.html">About Us</a>
-
-    <a href="contact.html">Contact</a>
-
-</nav>
+<!-- =====================================================
+     NO NAVIGATION BAR
+===================================================== -->
 
 
-<!-- ================= REGISTRATION ================= -->
+<!-- =====================================================
+     REGISTRATION
+===================================================== -->
 
 <div class="registration-box">
 
+
+    <!-- ================= TITLE ================= -->
 
     <div class="registration-title">
 
@@ -354,173 +378,254 @@
     </div>
 
 
+    <!-- ================= FORM ================= -->
+
     <form
         class="registration-form"
         onsubmit="registerStudent(event)">
 
 
-        <!-- Full Name -->
+        <!-- ================= FULL NAME ================= -->
 
         <div class="form-group">
 
             <label for="name">
+
                 Full Name :
+
             </label>
 
+
             <input
+
                 type="text"
+
                 id="name"
+
                 class="registration-input"
+
                 placeholder="Enter Full Name"
+
                 required
+
                 oninvalid="this.setCustomValidity('Please enter your Full Name')"
+
                 oninput="this.setCustomValidity('')">
 
         </div>
 
 
-        <!-- Email -->
+        <!-- ================= EMAIL ================= -->
 
         <div class="form-group">
 
             <label for="email">
+
                 Email :
+
             </label>
 
+
             <input
+
                 type="email"
+
                 id="email"
+
                 class="registration-input"
+
                 placeholder="Enter Email Address"
+
                 required
+
                 oninvalid="this.setCustomValidity('Please enter your Email Address')"
+
                 oninput="this.setCustomValidity('')">
 
         </div>
 
 
-        <!-- Mobile -->
+        <!-- ================= MOBILE ================= -->
 
         <div class="form-group">
 
             <label for="mobile">
+
                 Mobile Number :
+
             </label>
 
+
             <input
+
                 type="text"
+
                 id="mobile"
+
                 class="registration-input"
+
                 placeholder="Enter 10-digit Mobile Number"
+
                 pattern="[0-9]{10}"
+
                 required
+
                 oninvalid="this.setCustomValidity('Please enter a valid 10-digit Mobile Number')"
+
                 oninput="this.setCustomValidity('')">
 
         </div>
 
 
-        <!-- Password -->
+        <!-- ================= PASSWORD ================= -->
 
         <div class="form-group">
 
             <label for="password">
+
                 Password :
+
             </label>
 
+
             <input
+
                 type="password"
+
                 id="password"
+
                 class="registration-input"
+
                 placeholder="Enter Password"
+
                 required
+
                 oninvalid="this.setCustomValidity('Please enter your Password')"
+
                 oninput="this.setCustomValidity('')">
 
         </div>
 
 
-        <!-- Confirm Password -->
+        <!-- ================= CONFIRM PASSWORD ================= -->
 
         <div class="form-group">
 
             <label for="confirmPassword">
+
                 Confirm Password :
+
             </label>
 
+
             <input
+
                 type="password"
+
                 id="confirmPassword"
+
                 class="registration-input"
+
                 placeholder="Confirm Password"
+
                 required>
 
         </div>
 
 
-        <!-- Gender -->
+        <!-- ================= GENDER ================= -->
 
         <div class="form-group">
 
             <label>
+
                 Gender :
+
             </label>
+
 
             <div class="gender">
 
+
                 <input
+
                     type="radio"
+
                     name="gender"
+
                     value="Male"
+
                     required>
 
                 Male
 
+
                 &nbsp;&nbsp;&nbsp;
 
+
                 <input
+
                     type="radio"
+
                     name="gender"
+
                     value="Female">
 
                 Female
 
+
                 &nbsp;&nbsp;&nbsp;
 
+
                 <input
+
                     type="radio"
+
                     name="gender"
+
                     value="Other">
 
                 Other
+
 
             </div>
 
         </div>
 
 
-        <!-- Terms -->
+        <!-- ================= TERMS ================= -->
 
         <div class="terms">
 
+
             <input
+
                 type="checkbox"
+
                 id="terms"
+
                 required>
+
 
             I agree to the
 
+
             <a href="#">
+
                 Terms & Conditions
+
             </a>
+
 
         </div>
 
 
-        <!-- Register Button -->
+        <!-- ================= REGISTER BUTTON ================= -->
 
         <button
+
             type="submit"
+
             class="register-button">
 
             Register
@@ -531,14 +636,17 @@
     </form>
 
 
-    <!-- Login Link -->
+    <!-- ================= LOGIN LINK ================= -->
 
     <div class="login-link">
 
         Already have an account?
 
+
         <a href="login.html">
+
             Login Here
+
         </a>
 
     </div>
@@ -547,30 +655,45 @@
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
     <p>
+
         <b>StudentHub Portal</b>
+
     </p>
 
+
     <p>
+
         Email : studenthub@gmail.com
+
     </p>
 
+
     <p>
+
         Phone : +91 9876543210
+
     </p>
 
+
     <p>
+
         © 2026 StudentHub Portal
+
     </p>
 
 </footer>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- =====================================================
+     REGISTRATION JAVASCRIPT
+===================================================== -->
 
 <script>
 
@@ -579,12 +702,19 @@ function registerStudent(event) {
     event.preventDefault();
 
 
+    // Get password
+
     var password =
         document.getElementById("password").value;
+
+
+    // Get confirm password
 
     var confirmPassword =
         document.getElementById("confirmPassword").value;
 
+
+    // Check password
 
     if (password !== confirmPassword) {
 
@@ -595,11 +725,37 @@ function registerStudent(event) {
     }
 
 
+    // Get student name
+
+    var name =
+        document.getElementById("name").value;
+
+
+    // Get email
+
+    var email =
+        document.getElementById("email").value;
+
+
+    // Save registration information
+
+    localStorage.setItem("registered", "true");
+
+    localStorage.setItem("loggedIn", "true");
+
+    localStorage.setItem("user", email);
+
+    localStorage.setItem("studentName", name);
+
+
+    // Registration successful
+
     alert("Registration successful!");
 
 
-    window.location.href =
-        "login.html";
+    // Open Home Page
+
+    window.location.href = "home.html";
 
 }
 

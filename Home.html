@@ -9,9 +9,10 @@
           content="width=device-width, initial-scale=1.0">
 
     <title>StudentHub Portal</title>
+    <script src="script.js"></script>
 
 
-    <!-- Google Font -->
+    <!-- ================= GOOGLE FONT ================= -->
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -41,11 +42,14 @@
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
     <div class="header-content">
+
 
         <div class="header-text">
 
@@ -75,17 +79,19 @@
 
         </div>
 
+
     </div>
 
 </header>
-<!-- ================= NAVIGATION ================= -->
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <nav>
 
     <a href="home.html">Home</a>
-
-    <a href="login.html">Login</a>
-
-    <a href="registration.html">Registration</a>
 
     <a href="dashboard.html">Dashboard</a>
 
@@ -101,37 +107,102 @@
 
     <a href="about.html">About Us</a>
 
+    <a href="#" onclick="logout(); return false;">
+
+        Logout
+
+    </a>
+
 </nav>
 
 
-<!-- ================= HOME BANNER ================= -->
+<!-- =====================================================
+     FULL SCREEN HOME IMAGE
+===================================================== -->
 
-<div class="banner">
-
-    <img src="images/student_portal_sharp_rectangle.png"
-         alt="Students on College Campus">
-
-
-    <h2>Welcome Students!</h2>
+<section class="home-hero">
 
 
-    <p>
+    <!-- BACKGROUND IMAGE -->
 
-        StudentHub Portal is a simple website where students can
-        register, login, check events, update profile,
-        give feedback and view important information.
+    <div class="hero-image">
 
-    </p>
+        <img src="images/student_portal_sharp_rectangle.png"
+             alt="Students on College Campus">
 
-</div>
+    </div>
 
 
-<!-- ================= PORTAL FEATURES ================= -->
+    <!-- IMAGE OVERLAY -->
+
+    <div class="hero-overlay"></div>
+
+
+    <!-- =================================================
+         TEXT ON IMAGE
+    ================================================== -->
+
+    <div class="hero-text">
+
+
+        <h2>
+
+            Welcome Students!
+
+        </h2>
+
+
+        <p>
+
+            Welcome to StudentHub Portal
+
+        </p>
+
+
+        <span>
+
+            StudentHub Portal is a simple website where students can
+            register, login, check events, update profile,
+            give feedback and view important information.
+
+        </span>
+
+
+        <div class="hero-buttons">
+
+            <a href="dashboard.html">
+
+                Explore Dashboard
+
+            </a>
+
+
+            <a href="events.html">
+
+                View Events
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================================
+     PORTAL FEATURES
+===================================================== -->
 
 <div class="content">
 
+
     <h2 style="text-align:center;">
+
         Portal Features
+
     </h2>
 
 
@@ -143,8 +214,10 @@
             <h3>Login</h3>
 
             <p>
+
                 Students can login using
                 their email and password.
+
             </p>
 
         </div>
@@ -155,7 +228,9 @@
             <h3>Registration</h3>
 
             <p>
+
                 Create a new student account.
+
             </p>
 
         </div>
@@ -166,7 +241,9 @@
             <h3>Dashboard</h3>
 
             <p>
+
                 View notices and important updates.
+
             </p>
 
         </div>
@@ -177,7 +254,9 @@
             <h3>Profile</h3>
 
             <p>
+
                 Update personal information.
+
             </p>
 
         </div>
@@ -188,7 +267,9 @@
             <h3>Events</h3>
 
             <p>
+
                 View upcoming college events.
+
             </p>
 
         </div>
@@ -199,7 +280,9 @@
             <h3>Feedback</h3>
 
             <p>
+
                 Give suggestions about the portal.
+
             </p>
 
         </div>
@@ -210,7 +293,9 @@
 </div>
 
 
-<!-- ================= LATEST NEWS ================= -->
+<!-- =====================================================
+     LATEST NEWS
+===================================================== -->
 
 <div class="content">
 
@@ -220,19 +305,30 @@
     <ul>
 
         <li>
+
             Semester Registration starts from 1 August.
+
         </li>
 
+
         <li>
+
             Technical Fest registration is open.
+
         </li>
 
+
         <li>
+
             Sports Week will begin next month.
+
         </li>
 
+
         <li>
+
             Assignment submission date is 25 July.
+
         </li>
 
     </ul>
@@ -240,7 +336,9 @@
 </div>
 
 
-<!-- ================= WHY STUDENTHUB ================= -->
+<!-- =====================================================
+     WHY STUDENTHUB
+===================================================== -->
 
 <div class="content">
 
@@ -250,15 +348,19 @@
     <p>
 
         ✔ Easy to use
+
         <br><br>
 
         ✔ Student Friendly
+
         <br><br>
 
         ✔ Access Important Information
+
         <br><br>
 
         ✔ View College Events
+
         <br><br>
 
         ✔ Contact College Staff
@@ -268,27 +370,307 @@
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
     <p>
+
         <b>StudentHub Portal</b>
+
     </p>
 
+
     <p>
+
         Email : studenthub@gmail.com
+
     </p>
 
+
     <p>
+
         Phone : +91 9876543210
+
     </p>
 
+
     <p>
+
         © 2026 StudentHub Portal
+
     </p>
 
 </footer>
+
+
+<!-- =====================================================
+     HOME PAGE CSS
+===================================================== -->
+
+<style>
+
+
+/* =====================================================
+   FULL SCREEN HERO
+===================================================== */
+
+.home-hero {
+
+    position: relative;
+
+    width: 100%;
+
+    height: calc(100vh - 145px);
+
+    min-height: 600px;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.hero-image {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+.hero-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+}
+
+
+/* =====================================================
+   IMAGE OVERLAY
+===================================================== */
+
+.hero-overlay {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(1, 25, 53, 0.30);
+
+}
+
+
+/* =====================================================
+   TEXT ON IMAGE
+===================================================== */
+
+.hero-text {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 8%;
+
+    transform: translateY(-50%);
+
+    width: 550px;
+
+    max-width: 50%;
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   MAIN HEADING
+===================================================== */
+
+.hero-text h2 {
+
+    font-size: 55px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+    text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+
+}
+
+
+/* =====================================================
+   SUB HEADING
+===================================================== */
+
+.hero-text p {
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.hero-text span {
+
+    display: block;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+}
+
+
+.hero-buttons a {
+
+    display: inline-block;
+
+    padding: 12px 24px;
+
+    background-color: #011935;
+
+    color: white;
+
+    border: 1px solid white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+
+.hero-buttons a:hover {
+
+    background-color: #2c5aa0;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .home-hero {
+
+        height: calc(100vh - 130px);
+
+    }
+
+
+    .hero-text {
+
+        left: 5%;
+
+        width: 90%;
+
+        max-width: 90%;
+
+        text-align: center;
+
+    }
+
+
+    .hero-text h2 {
+
+        font-size: 38px;
+
+    }
+
+
+    .hero-text p {
+
+        font-size: 21px;
+
+    }
+
+
+    .hero-text span {
+
+        font-size: 15px;
+
+        line-height: 1.6;
+
+    }
+
+
+    .hero-buttons {
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+    }
+
+}
+
+</style>
+
+
+<!-- =====================================================
+     LOGOUT + LOGIN CHECK
+===================================================== -->
+
+
 
 
 <!-- Bootstrap JavaScript -->
