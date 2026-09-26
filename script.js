@@ -1,991 +1,1477 @@
-// =====================================================
-// STUDENTHUB PORTAL - COMPLETE JAVASCRIPT
-// =====================================================
+/* =========================================================
+   STUDENTHUB - COMPLETE CLEAN JAVASCRIPT
+   ========================================================= */
 
 
-
-// =====================================================
-// LOGIN
-// =====================================================
-
-function saveData() {
-
-    const username =
-        document.getElementById("username").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-
-    if (username === "" || password === "") {
-
-        alert("Please enter Email/Username and Password.");
-
-        return;
-    }
-
-
-    localStorage.setItem("loggedIn", "true");
-
-    localStorage.setItem("user", username);
-
-
-    alert("Login successful!");
-
-    window.location.href = "home.html";
-}
-
-
-
-// =====================================================
-// LOGIN USER
-// =====================================================
+/* =========================================================
+   1. LOGIN SYSTEM
+   ========================================================= */
 
 function loginUser(event) {
-
     event.preventDefault();
 
+    const emailOrUsername = document.getElementById("emailOrUsername").value.trim();
+    const password = document.getElementById("loginPassword").value;
 
-    const username =
-        document.getElementById("username").value.trim();
+    const emailRegex =
+        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-    const password =
-        document.getElementById("password").value;
+    const usernameRegex =
+        /^[A-Za-z][A-Za-z0-9._-]{2,29}$/;
 
+    const passwordRegex =
+        /^(?=.*[A-Za-z])(?=.*[0-9]).{6,}$/;
 
-    if (username === "" || password === "") {
+    if (!emailRegex.test(emailOrUsername) &&
+        !usernameRegex.test(emailOrUsername)) {
 
-        alert("Please enter Email/Username and Password.");
-
+        alert("Please enter a valid email or username.");
         return;
     }
 
+    if (!passwordRegex.test(password)) {
+        alert("Password must contain at least 6 characters and include letters and numbers.");
+        return;
+    }
 
     localStorage.setItem("loggedIn", "true");
-
-    localStorage.setItem("user", username);
-
+    localStorage.setItem("user", emailOrUsername);
+    localStorage.setItem("studentName", emailOrUsername);
 
     alert("Login successful!");
 
-    window.location.href = "home.html";
+    window.location.href = "Home.html";
 }
 
 
-
-// =====================================================
-// LOGOUT
-// =====================================================
+/* =========================================================
+   2. LOGOUT SYSTEM
+   ========================================================= */
 
 function logout() {
-
     localStorage.removeItem("loggedIn");
-
     localStorage.removeItem("user");
 
+    alert("You have been logged out.");
 
-    alert("You have been logged out successfully!");
-
-    window.location.href = "login.html";
+    window.location.href = "Login.html";
 }
 
 
-
-// =====================================================
-// CHECK LOGIN
-// =====================================================
+/* =========================================================
+   3. LOGIN CHECK
+   ========================================================= */
 
 function checkLogin() {
+    const loggedIn = localStorage.getItem("loggedIn");
 
-    if (localStorage.getItem("loggedIn") !== "true") {
-
-        alert("Please login first.");
-
-        window.location.href = "login.html";
+    if (loggedIn !== "true") {
+        window.location.href = "Login.html";
     }
 }
 
 
+/* =========================================================
+   4. REGISTRATION VALIDATION
+   ========================================================= */
 
-// =====================================================
-// REGISTRATION VALIDATION
-// =====================================================
+function setupRegistrationValidation() {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+    const registrationForm =
+        document.getElementById("registrationForm");
 
+    if (!registrationForm) return;
 
-        const registrationForm =
-            document.getElementById("registrationForm");
+    registrationForm.addEventListener("submit", function (event) {
 
+        event.preventDefault();
 
-        if (registrationForm) {
+        const name =
+            document.getElementById("name").value.trim();
 
-            registrationForm.addEventListener(
-                "submit",
-                function (event) {
+        const email =
+            document.getElementById("email").value.trim();
 
-                    event.preventDefault();
+        const mobile =
+            document.getElementById("mobile").value.trim();
 
+        const password =
+            document.getElementById("password").value;
 
-                    // ================================
-                    // GET REGISTRATION VALUES
-                    // ================================
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
 
-                    const name =
-                        document
-                            .getElementById("name")
-                            .value
-                            .trim();
+        const course =
+            document.getElementById("course").value;
 
+        const year =
+            document.getElementById("year").value;
 
-                    const email =
-                        document
-                            .getElementById("email")
-                            .value
-                            .trim();
+        const gender =
+            document.querySelector('input[name="gender"]:checked');
 
+        const terms =
+            document.getElementById("terms");
 
-                    const mobile =
-                        document
-                            .getElementById("mobile")
-                            .value
-                            .trim();
+        const nameRegex =
+            /^[A-Za-z ]{2,50}$/;
 
+        const emailRegex =
+            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-                    const password =
-                        document
-                            .getElementById("password")
-                            .value;
+        const mobileRegex =
+            /^[6-9][0-9]{9}$/;
 
+        const passwordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
 
-                    const confirmPassword =
-                        document
-                            .getElementById("confirmPassword")
-                            .value;
 
+        if (!nameRegex.test(name)) {
+            alert("Please enter a valid name.");
+            return;
+        }
 
-                    const gender =
-                        document.querySelector(
-                            'input[name="gender"]:checked'
-                        );
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
 
+        if (!mobileRegex.test(mobile)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
 
-                    const terms =
-                        document.getElementById("terms").checked;
-
-
-
-                    // ================================
-                    // NAME VALIDATION
-                    // ================================
-
-                    const namePattern =
-                        /^[A-Za-z ]{2,50}$/;
-
-
-                    if (!namePattern.test(name)) {
-
-                        alert(
-                            "Invalid Name!\n\n" +
-                            "Name must contain only letters and spaces."
-                        );
-
-                        document
-                            .getElementById("name")
-                            .focus();
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // EMAIL VALIDATION
-                    // ================================
-
-                    const emailPattern =
-                        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-
-                    if (!emailPattern.test(email)) {
-
-                        alert(
-                            "Invalid Email!\n\n" +
-                            "Please enter a complete email address.\n\n" +
-                            "Example: abc@gmail.com"
-                        );
-
-                        document
-                            .getElementById("email")
-                            .focus();
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // MOBILE VALIDATION
-                    // ================================
-
-                    const mobilePattern =
-                        /^[6-9][0-9]{9}$/;
-
-
-                    if (!mobilePattern.test(mobile)) {
-
-                        alert(
-                            "Invalid Mobile Number!\n\n" +
-                            "Mobile number must contain exactly 10 digits " +
-                            "and start with 6, 7, 8 or 9."
-                        );
-
-                        document
-                            .getElementById("mobile")
-                            .focus();
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // PASSWORD VALIDATION
-                    // ================================
-
-                    const passwordPattern =
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
-
-
-                    if (!passwordPattern.test(password)) {
-
-                        alert(
-                            "Invalid Password!\n\n" +
-                            "Password must contain:\n" +
-                            "• Minimum 8 characters\n" +
-                            "• At least 1 uppercase letter\n" +
-                            "• At least 1 lowercase letter\n" +
-                            "• At least 1 number"
-                        );
-
-                        document
-                            .getElementById("password")
-                            .focus();
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // CONFIRM PASSWORD
-                    // ================================
-
-                    if (password !== confirmPassword) {
-
-                        alert(
-                            "Password and Confirm Password do not match."
-                        );
-
-                        document
-                            .getElementById("confirmPassword")
-                            .focus();
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // GENDER
-                    // ================================
-
-                    if (!gender) {
-
-                        alert("Please select your Gender.");
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // TERMS
-                    // ================================
-
-                    if (!terms) {
-
-                        alert(
-                            "Please accept the Terms & Conditions."
-                        );
-
-                        return;
-                    }
-
-
-
-                    // ================================
-                    // SAVE REGISTRATION
-                    // ================================
-
-                    localStorage.setItem(
-                        "registered",
-                        "true"
-                    );
-
-
-                    localStorage.setItem(
-                        "loggedIn",
-                        "true"
-                    );
-
-
-                    localStorage.setItem(
-                        "user",
-                        email
-                    );
-
-
-                    localStorage.setItem(
-                        "studentName",
-                        name
-                    );
-
-
-                    // ================================
-                    // SUCCESS
-                    // ================================
-
-                    alert(
-                        "Registration successful!"
-                    );
-
-
-                    window.location.href =
-                        "home.html";
-
-                }
+        if (!passwordRegex.test(password)) {
+            alert(
+                "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number."
             );
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+
+        if (!course) {
+            alert("Please select your course.");
+            return;
+        }
+
+        if (!year) {
+            alert("Please select your year.");
+            return;
+        }
+
+        if (!gender) {
+            alert("Please select your gender.");
+            return;
+        }
+
+        if (!terms || !terms.checked) {
+            alert("Please accept the terms and conditions.");
+            return;
         }
 
 
+        localStorage.setItem(
+            "registrationData",
+            JSON.stringify({
+                name: name,
+                email: email,
+                mobile: mobile,
+                course: course,
+                year: year,
+                gender: gender.value
+            })
+        );
 
-        // =================================================
-        // PROFILE VALIDATION
-        // =================================================
+        localStorage.setItem("studentName", name);
 
-        const profileForm =
-            document.getElementById("profileForm");
+        alert("Registration successful!");
 
-
-        if (profileForm) {
-
-            setupProfileValidation(profileForm);
-
-        }
-
-    }
-);
+        window.location.href = "Home.html";
+    });
+}
 
 
-
-// =====================================================
-// PROFILE VALIDATION FUNCTION
-// =====================================================
+/* =========================================================
+   5. PROFILE VALIDATION
+   ========================================================= */
 
 function setupProfileValidation(form) {
 
+    if (!form) return;
 
-    // =================================================
-    // DATE OF BIRTH - MAXIMUM TODAY
-    // =================================================
+    form.addEventListener("submit", function (event) {
 
-    const dob =
-        document.getElementById("dob");
+        event.preventDefault();
+
+        const name =
+            document.getElementById("profileName")?.value.trim();
+
+        const enrollment =
+            document.getElementById("enrollment")?.value.trim();
+
+        const email =
+            document.getElementById("profileEmail")?.value.trim();
+
+        const mobile =
+            document.getElementById("profileMobile")?.value.trim();
+
+        const department =
+            document.getElementById("department")?.value;
+
+        const semester =
+            document.getElementById("semester")?.value;
+
+        const dob =
+            document.getElementById("dob")?.value;
+
+        const gender =
+            document.querySelector('input[name="profileGender"]:checked');
+
+        const address =
+            document.getElementById("address")?.value.trim();
 
 
-    if (dob) {
+        const nameRegex =
+            /^[A-Za-z ]{2,50}$/;
 
-        const today =
-            new Date();
+        const enrollmentRegex =
+            /^[A-Za-z0-9/-]{5,20}$/;
 
+        const emailRegex =
+            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-        const year =
-            today.getFullYear();
-
-
-        const month =
-            String(today.getMonth() + 1)
-                .padStart(2, "0");
+        const mobileRegex =
+            /^[6-9][0-9]{9}$/;
 
 
-        const day =
-            String(today.getDate())
-                .padStart(2, "0");
+        if (name && !nameRegex.test(name)) {
+            showProfileError("profileName", "Please enter a valid name.");
+            return;
+        }
+
+        if (enrollment && !enrollmentRegex.test(enrollment)) {
+            showProfileError(
+                "enrollment",
+                "Please enter a valid enrollment number."
+            );
+            return;
+        }
+
+        if (email && !emailRegex.test(email)) {
+            showProfileError(
+                "profileEmail",
+                "Please enter a valid email."
+            );
+            return;
+        }
+
+        if (mobile && !mobileRegex.test(mobile)) {
+            showProfileError(
+                "profileMobile",
+                "Please enter a valid 10-digit mobile number."
+            );
+            return;
+        }
+
+        if (!department) {
+            showProfileError(
+                "department",
+                "Please select your department."
+            );
+            return;
+        }
+
+        if (!semester) {
+            showProfileError(
+                "semester",
+                "Please select your semester."
+            );
+            return;
+        }
+
+        if (!dob) {
+            showProfileError(
+                "dob",
+                "Please select your date of birth."
+            );
+            return;
+        }
+
+        if (!gender) {
+            showGenderError("Please select your gender.");
+            return;
+        }
+
+        if (!address) {
+            showProfileError(
+                "address",
+                "Please enter your address."
+            );
+            return;
+        }
 
 
-        dob.max =
-            year + "-" + month + "-" + day;
+        const profileData = {
+            name: name,
+            enrollment: enrollment,
+            email: email,
+            mobile: mobile,
+            department: department,
+            semester: semester,
+            dob: dob,
+            gender: gender.value,
+            address: address
+        };
+
+        localStorage.setItem(
+            "profileData",
+            JSON.stringify(profileData)
+        );
+
+        localStorage.setItem("studentName", name);
+
+        alert("Profile updated successfully!");
+
+        loadProfileData();
+        setupSharedProfilePhoto();
+        updateUserName();
+    });
+}
+
+
+/* =========================================================
+   6. PROFILE ERROR FUNCTIONS
+   ========================================================= */
+
+function showProfileError(inputId, message) {
+
+    const input = document.getElementById(inputId);
+
+    if (!input) return;
+
+    input.classList.add("input-error");
+
+    let error =
+        input.parentElement.querySelector(".error-message");
+
+    if (!error) {
+        error = document.createElement("small");
+        error.className = "error-message";
+        input.parentElement.appendChild(error);
+    }
+
+    error.textContent = message;
+}
+
+
+function showGenderError(message) {
+
+    const genderContainer =
+        document.querySelector(".gender-group") ||
+        document.querySelector('[name="profileGender"]')?.parentElement;
+
+    if (!genderContainer) {
+        alert(message);
+        return;
+    }
+
+    let error =
+        genderContainer.querySelector(".error-message");
+
+    if (!error) {
+        error = document.createElement("small");
+        error.className = "error-message";
+        genderContainer.appendChild(error);
+    }
+
+    error.textContent = message;
+}
+
+
+/* =========================================================
+   7. PROFILE IMAGE UPLOAD
+   ========================================================= */
+
+function loadImage(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select a valid image file.");
+        event.target.value = "";
+        return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("Image size must be less than 2 MB.");
+        event.target.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+
+        const preview =
+            document.getElementById("preview");
+
+        const defaultProfile =
+            document.getElementById("defaultProfile");
+
+        if (preview) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+        }
+
+        if (defaultProfile) {
+            defaultProfile.style.display = "none";
+        }
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            const canvas =
+                document.createElement("canvas");
+
+            const maxSize = 500;
+
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+
+                if (width > maxSize) {
+                    height =
+                        height * (maxSize / width);
+
+                    width = maxSize;
+                }
+
+            } else {
+
+                if (height > maxSize) {
+                    width =
+                        width * (maxSize / height);
+
+                    height = maxSize;
+                }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
+
+            const compressedImage =
+                canvas.toDataURL("image/jpeg", 0.8);
+
+            localStorage.setItem(
+                "profilePhoto",
+                compressedImage
+            );
+
+            setupSharedProfilePhoto();
+            updateAllProfilePhotos();
+        };
+
+        img.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+
+/* =========================================================
+   8. SHARED PROFILE PHOTO
+   ========================================================= */
+
+function setupSharedProfilePhoto() {
+
+    const savedPhoto =
+        localStorage.getItem("profilePhoto");
+
+    if (!savedPhoto) return;
+
+    const images =
+        document.querySelectorAll(
+            ".profile-photo, .user-profile-img, .shared-profile-photo"
+        );
+
+    images.forEach(function (img) {
+        img.src = savedPhoto;
+    });
+}
+
+
+/* =========================================================
+   9. LOAD PROFILE DATA
+   ========================================================= */
+
+function loadProfileData() {
+
+    const savedData =
+        localStorage.getItem("profileData");
+
+    if (savedData) {
+
+        const data =
+            JSON.parse(savedData);
+
+        const fields = {
+            profileName: data.name,
+            enrollment: data.enrollment,
+            profileEmail: data.email,
+            profileMobile: data.mobile,
+            department: data.department,
+            semester: data.semester,
+            dob: data.dob,
+            address: data.address
+        };
+
+        Object.keys(fields).forEach(function (id) {
+
+            const element =
+                document.getElementById(id);
+
+            if (element && fields[id] !== undefined) {
+                element.value = fields[id];
+            }
+        });
+
+
+        if (data.gender) {
+
+            const genderInput =
+                document.querySelector(
+                    `input[name="profileGender"][value="${data.gender}"]`
+                );
+
+            if (genderInput) {
+                genderInput.checked = true;
+            }
+        }
     }
 
 
+    const savedPhoto =
+        localStorage.getItem("profilePhoto");
 
-    // =================================================
-    // PROFILE FORM SUBMIT
-    // =================================================
+    if (savedPhoto) {
 
-    form.addEventListener(
-        "submit",
-        function (event) {
+        const preview =
+            document.getElementById("preview");
 
+        const defaultProfile =
+            document.getElementById("defaultProfile");
 
-            event.preventDefault();
+        if (preview) {
+            preview.src = savedPhoto;
+            preview.style.display = "block";
+        }
 
+        if (defaultProfile) {
+            defaultProfile.style.display = "none";
+        }
+    }
+}
 
 
-            // =================================================
-            // GET PROFILE VALUES
-            // =================================================
+/* =========================================================
+   10. PROFILE PHOTO STORAGE
+   ========================================================= */
 
-            const name =
-                document
-                    .getElementById("profileName")
-                    .value
-                    .trim();
+function setupProfilePhotoStorage() {
 
+    const savedPhoto =
+        localStorage.getItem("profilePhoto");
 
-            const enrollment =
-                document
-                    .getElementById("enrollment")
-                    .value
-                    .trim();
+    if (!savedPhoto) return;
 
+    const preview =
+        document.getElementById("preview");
 
-            const email =
-                document
-                    .getElementById("profileEmail")
-                    .value
-                    .trim();
+    const defaultProfile =
+        document.getElementById("defaultProfile");
 
+    if (preview) {
+        preview.src = savedPhoto;
+        preview.style.display = "block";
+    }
 
-            const mobile =
-                document
-                    .getElementById("profileMobile")
-                    .value
-                    .trim();
+    if (defaultProfile) {
+        defaultProfile.style.display = "none";
+    }
+}
 
 
-            const department =
-                document
-                    .getElementById("department")
-                    .value
-                    .trim();
+/* =========================================================
+   11. HAMBURGER MENU
+   ========================================================= */
 
+function setupHamburgerMenu() {
 
-            const semester =
-                document
-                    .getElementById("semester")
-                    .value
-                    .trim();
+    const nav =
+        document.querySelector("nav");
 
+    if (!nav) return;
 
-            const dobValue =
-                document
-                    .getElementById("dob")
-                    .value;
+    if (document.getElementById("hamburgerMenu")) {
+        return;
+    }
 
+    const hamburgerButton =
+        document.createElement("button");
 
-            const address =
-                document
-                    .getElementById("address")
-                    .value
-                    .trim();
+    hamburgerButton.id = "hamburgerMenu";
+    hamburgerButton.className = "hamburger-menu";
+    hamburgerButton.innerHTML = "☰";
 
+    nav.insertBefore(
+        hamburgerButton,
+        nav.firstChild
+    );
 
-            const gender =
-                document.querySelector(
-                    'input[name="gender"]:checked'
-                );
+    hamburgerButton.addEventListener(
+        "click",
+        function () {
 
+            nav.classList.toggle("nav-open");
 
-
-            // =================================================
-            // NAME VALIDATION
-            // =================================================
-
-            const profileNamePattern =
-                /^[A-Za-z ]{2,50}$/;
-
-
-            if (!profileNamePattern.test(name)) {
-
-                showProfileError(
-                    "profileName",
-                    "nameError",
-                    "Name must contain only letters and spaces."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // ENROLLMENT VALIDATION
-            // =================================================
-
-            const enrollmentPattern =
-                /^[A-Za-z0-9/-]{5,20}$/;
-
-
-            if (!enrollmentPattern.test(enrollment)) {
-
-                showProfileError(
-                    "enrollment",
-                    "enrollmentError",
-                    "Enter a valid enrollment number."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // EMAIL VALIDATION
-            // =================================================
-
-            const profileEmailPattern =
-                /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-
-            if (!profileEmailPattern.test(email)) {
-
-                showProfileError(
-                    "profileEmail",
-                    "emailError",
-                    "Enter a valid email. Example: abc@gmail.com"
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // MOBILE VALIDATION
-            // =================================================
-
-            const profileMobilePattern =
-                /^[6-9][0-9]{9}$/;
-
-
-            if (!profileMobilePattern.test(mobile)) {
-
-                showProfileError(
-                    "profileMobile",
-                    "mobileError",
-                    "Enter exactly 10 digits starting with 6, 7, 8 or 9."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // DEPARTMENT VALIDATION
-            // =================================================
-
-            const departmentPattern =
-                /^[A-Za-z &.-]{2,50}$/;
-
-
-            if (!departmentPattern.test(department)) {
-
-                showProfileError(
-                    "department",
-                    "departmentError",
-                    "Enter a valid department name."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // SEMESTER VALIDATION
-            // =================================================
-
-            const semesterPattern =
-                /^(1|2|3|4|5|6|7|8|semester\s*(1|2|3|4|5|6|7|8))$/i;
-
-
-            if (!semesterPattern.test(semester)) {
-
-                showProfileError(
-                    "semester",
-                    "semesterError",
-                    "Enter a valid semester from 1 to 8."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // GENDER VALIDATION
-            // =================================================
-
-            if (!gender) {
-
-                showGenderError(
-                    "genderError",
-                    "Please select your Gender."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // DATE OF BIRTH VALIDATION
-            // =================================================
-
-            if (dobValue === "") {
-
-                showProfileError(
-                    "dob",
-                    "dobError",
-                    "Please select your Date of Birth."
-                );
-
-                return;
-            }
-
-
-            const selectedDate =
-                new Date(dobValue);
-
-
-            const currentDate =
-                new Date();
-
-
-            currentDate.setHours(
-                0,
-                0,
-                0,
-                0
-            );
-
-
-            if (selectedDate > currentDate) {
-
-                showProfileError(
-                    "dob",
-                    "dobError",
-                    "Date of Birth cannot be a future date."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // ADDRESS VALIDATION
-            // =================================================
-
-            if (address.length < 10) {
-
-                showProfileError(
-                    "address",
-                    "addressError",
-                    "Please enter a complete address (minimum 10 characters)."
-                );
-
-                return;
-            }
-
-
-
-            // =================================================
-            // SAVE PROFILE DATA
-            // =================================================
-
-            localStorage.setItem(
-                "profileName",
-                name
-            );
-
-
-            localStorage.setItem(
-                "enrollment",
-                enrollment
-            );
-
-
-            localStorage.setItem(
-                "profileEmail",
-                email
-            );
-
-
-            localStorage.setItem(
-                "profileMobile",
-                mobile
-            );
-
-
-            localStorage.setItem(
-                "department",
-                department
-            );
-
-
-            localStorage.setItem(
-                "semester",
-                semester
-            );
-
-
-            localStorage.setItem(
-                "gender",
-                gender.value
-            );
-
-
-            localStorage.setItem(
-                "dob",
-                dobValue
-            );
-
-
-            localStorage.setItem(
-                "address",
-                address
-            );
-
-
-            localStorage.setItem(
-                "studentName",
-                name
-            );
-
-
-
-            // =================================================
-            // SUCCESS
-            // =================================================
-
-            alert(
-                "Profile updated successfully!"
-            );
-
+            hamburgerButton.innerHTML =
+                nav.classList.contains("nav-open")
+                    ? "✕"
+                    : "☰";
         }
     );
 }
 
 
+/* =========================================================
+   12. DARK / LIGHT THEME
+   ========================================================= */
 
-// =====================================================
-// PROFILE ERROR FUNCTION
-// =====================================================
+function setupThemeToggle() {
 
-function showProfileError(
-    inputId,
-    errorId,
-    message
-) {
+    const nav =
+        document.querySelector("nav");
 
-    const input =
-        document.getElementById(inputId);
+    if (!nav) return;
 
-
-    const error =
-        document.getElementById(errorId);
-
-
-    if (input) {
-
-        input.classList.add(
-            "input-error"
-        );
-
-        input.focus();
+    if (document.getElementById("themeToggle")) {
+        return;
     }
 
+    const themeButton =
+        document.createElement("button");
 
-    if (error) {
+    themeButton.id = "themeToggle";
 
-        error.innerText =
-            message;
+    const savedTheme =
+        localStorage.getItem("studentHubTheme");
 
-        error.style.display =
-            "block";
-    }
+    if (savedTheme === "dark") {
 
+        document.body.classList.add("dark-theme");
 
-    // If error-message element is not present,
-    // still show alert.
-
-    if (!error) {
-
-        alert(message);
-    }
-}
-
-
-
-// =====================================================
-// GENDER ERROR
-// =====================================================
-
-function showGenderError(
-    errorId,
-    message
-) {
-
-    const error =
-        document.getElementById(errorId);
-
-
-    if (error) {
-
-        error.innerText =
-            message;
-
-        error.style.display =
-            "block";
+        themeButton.innerHTML =
+            "☀️ Light";
 
     } else {
 
-        alert(message);
+        themeButton.innerHTML =
+            "🌙 Dark";
+    }
+
+
+    themeButton.addEventListener(
+        "click",
+        function () {
+
+            document.body.classList.toggle(
+                "dark-theme"
+            );
+
+            if (
+                document.body.classList.contains(
+                    "dark-theme"
+                )
+            ) {
+
+                localStorage.setItem(
+                    "studentHubTheme",
+                    "dark"
+                );
+
+                themeButton.innerHTML =
+                    "☀️ Light";
+
+            } else {
+
+                localStorage.setItem(
+                    "studentHubTheme",
+                    "light"
+                );
+
+                themeButton.innerHTML =
+                    "🌙 Dark";
+            }
+        }
+    );
+
+    nav.appendChild(themeButton);
+}
+
+
+/* =========================================================
+   13. NOTIFICATION BANNER
+   ========================================================= */
+
+function createNotificationBanner() {
+
+    if (
+        document.getElementById(
+            "studentNotification"
+        )
+    ) {
+        return;
+    }
+
+    const banner =
+        document.createElement("div");
+
+    banner.id = "studentNotification";
+    banner.className =
+        "student-notification";
+
+    banner.innerHTML = `
+        <span>📢 StudentHub Notice: Check the latest student updates!</span>
+        <button id="closeNotification">×</button>
+    `;
+
+    document.body.prepend(banner);
+
+    const closeButton =
+        document.getElementById(
+            "closeNotification"
+        );
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            function () {
+                banner.style.display = "none";
+            }
+        );
+    }
+
+    setTimeout(function () {
+
+        if (banner) {
+            banner.style.display = "none";
+        }
+
+    }, 8000);
+}
+
+
+/* =========================================================
+   14. MODAL POPUP
+   ========================================================= */
+
+function setupModalPopup() {
+
+    const modal =
+        document.getElementById("studentModal");
+
+    if (!modal) return;
+
+
+    const closeButton =
+        modal.querySelector(".modal-close");
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            function () {
+                closeStudentModal(modal);
+            }
+        );
+    }
+
+
+    modal.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === modal) {
+                closeStudentModal(modal);
+            }
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                modal.classList.contains("show")
+            ) {
+                closeStudentModal(modal);
+            }
+        }
+    );
+
+
+    const modalButtons =
+        document.querySelectorAll(
+            "[data-modal], .open-modal, #openModal"
+        );
+
+    modalButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+                openStudentModal(modal);
+            }
+        );
+    });
+}
+
+
+function openStudentModal(modal) {
+
+    if (!modal) {
+        modal =
+            document.getElementById(
+                "studentModal"
+            );
+    }
+
+    if (!modal) return;
+
+    modal.classList.add("show");
+    modal.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+}
+
+
+function closeStudentModal(modal) {
+
+    if (!modal) {
+        modal =
+            document.getElementById(
+                "studentModal"
+            );
+    }
+
+    if (!modal) return;
+
+    modal.classList.remove("show");
+    modal.style.display = "none";
+
+    document.body.style.overflow = "";
+}
+
+
+/* =========================================================
+   15. CONTENT SLIDER
+   ========================================================= */
+
+function setupContentSlider() {
+
+    const sliders =
+        document.querySelectorAll(
+            ".content-slider, .slider"
+        );
+
+    sliders.forEach(function (slider) {
+
+        setupSingleSlider(slider);
+    });
+}
+
+
+function setupSingleSlider(slider) {
+
+    const slides =
+        slider.querySelectorAll(
+            ".slide"
+        );
+
+    if (slides.length <= 1) return;
+
+    let currentSlide = 0;
+
+
+    slides.forEach(function (slide, index) {
+
+        slide.style.display =
+            index === 0
+                ? "block"
+                : "none";
+    });
+
+
+    setInterval(function () {
+
+        slides[currentSlide].style.display =
+            "none";
+
+        currentSlide =
+            (currentSlide + 1) %
+            slides.length;
+
+        slides[currentSlide].style.display =
+            "block";
+
+    }, 5000);
+}
+
+
+/* =========================================================
+   16. FAQ
+   ========================================================= */
+
+function setupFAQ() {
+
+    const faqItems =
+        document.querySelectorAll(
+            ".faq-item"
+        );
+
+    faqItems.forEach(function (item) {
+
+        const question =
+            item.querySelector(
+                ".faq-question"
+            );
+
+        const answer =
+            item.querySelector(
+                ".faq-answer"
+            );
+
+        if (!question || !answer) return;
+
+        answer.style.display = "none";
+
+
+        question.addEventListener(
+            "click",
+            function () {
+
+                const isActive =
+                    item.classList.contains(
+                        "active"
+                    );
+
+
+                faqItems.forEach(
+                    function (otherItem) {
+
+                        otherItem.classList.remove(
+                            "active"
+                        );
+
+                        const otherAnswer =
+                            otherItem.querySelector(
+                                ".faq-answer"
+                            );
+
+                        if (otherAnswer) {
+                            otherAnswer.style.display =
+                                "none";
+                        }
+                    }
+                );
+
+
+                if (!isActive) {
+
+                    item.classList.add(
+                        "active"
+                    );
+
+                    answer.style.display =
+                        "block";
+                }
+            }
+        );
+    });
+}
+
+
+/* =========================================================
+   17. PROFILE NAME UPDATE
+   ========================================================= */
+
+function updateUserName() {
+
+    const studentName =
+        localStorage.getItem(
+            "studentName"
+        );
+
+    if (!studentName) return;
+
+    const nameElements =
+        document.querySelectorAll(
+            ".student-name, #studentName, .user-name"
+        );
+
+    nameElements.forEach(function (element) {
+
+        element.textContent =
+            studentName;
+    });
+}
+
+
+/* =========================================================
+   18. UPDATE ALL PROFILE PHOTOS
+   ========================================================= */
+
+function updateAllProfilePhotos() {
+
+    const savedPhoto =
+        localStorage.getItem(
+            "profilePhoto"
+        );
+
+    if (!savedPhoto) return;
+
+
+    const images =
+        document.querySelectorAll(
+            'img[src*="profile"], img[src*="user"], img[src*="avatar"], .profile-photo'
+        );
+
+    images.forEach(function (img) {
+
+        img.src = savedPhoto;
+    });
+}
+
+
+/* =========================================================
+   19. LOGOUT BUTTONS
+   ========================================================= */
+
+function setupLogoutButtons() {
+
+    const logoutButtons =
+        document.querySelectorAll(
+            ".logout-btn, [href='Login.html']"
+        );
+
+    logoutButtons.forEach(function (button) {
+
+        if (
+            button.textContent
+                .trim()
+                .toLowerCase()
+                .includes("logout")
+        ) {
+
+            button.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    logout();
+                }
+            );
+        }
+    });
+}
+
+
+/* =========================================================
+   20. PRIVATE PAGE PROTECTION
+   ========================================================= */
+
+function protectPrivatePage() {
+
+    const privatePages = [
+        "dashboard.html",
+        "Dashboard.html",
+        "profile.html",
+        "Profile.html",
+        "events.html",
+        "Events.html",
+        "feedback.html",
+        "Feedback.html",
+        "contact.html",
+        "Contact.html",
+        "timetable.html",
+        "Timetable.html",
+        "attendance.html",
+        "Attendance.html",
+        "fees.html",
+        "Fees.html",
+        "result.html",
+        "Result.html"
+    ];
+
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop();
+
+    if (
+        privatePages.includes(
+            currentPage
+        )
+    ) {
+
+        const loggedIn =
+            localStorage.getItem(
+                "loggedIn"
+            );
+
+        if (loggedIn !== "true") {
+            window.location.href =
+                "Login.html";
+        }
     }
 }
 
 
+/* =========================================================
+   21. LOGIN PAGE REDIRECTION
+   ========================================================= */
 
-// =====================================================
-// PROFILE IMAGE VALIDATION + PREVIEW
-// =====================================================
+function redirectLoggedInUser() {
 
-function loadImage(event) {
-
-    const file =
-        event.target.files[0];
-
-
-    const error =
-        document.getElementById("photoError");
-
-
-    if (error) {
-
-        error.innerText = "";
-
-        error.style.display =
-            "none";
-    }
+    /*
+       Kept intentionally empty.
+       Login page can still be opened
+       even if the user is already logged in.
+    */
+}
 
 
-    if (!file) {
+/* =========================================================
+   22. REMOVE INPUT ERRORS
+   ========================================================= */
 
-        return;
-    }
+function setupInputErrorRemoval() {
 
+    const inputs =
+        document.querySelectorAll(
+            "input, select, textarea"
+        );
 
+    inputs.forEach(function (input) {
 
-    // =================================================
-    // IMAGE TYPE
-    // =================================================
+        input.addEventListener(
+            "input",
+            function () {
 
-    if (!file.type.startsWith("image/")) {
+                input.classList.remove(
+                    "input-error"
+                );
 
-        if (error) {
+                const error =
+                    input.parentElement
+                        ?.querySelector(
+                            ".error-message"
+                        );
 
-            error.innerText =
-                "Please select a valid image file.";
-
-            error.style.display =
-                "block";
-
-        } else {
-
-            alert(
-                "Please select a valid image file."
-            );
-        }
-
-
-        event.target.value = "";
-
-        return;
-    }
-
-
-
-    // =================================================
-    // IMAGE SIZE
-    // =================================================
-
-    if (file.size > 2 * 1024 * 1024) {
-
-        if (error) {
-
-            error.innerText =
-                "Profile photo must be less than 2 MB.";
-
-            error.style.display =
-                "block";
-
-        } else {
-
-            alert(
-                "Profile photo must be less than 2 MB."
-            );
-        }
+                if (error) {
+                    error.remove();
+                }
+            }
+        );
+    });
+}
 
 
-        event.target.value = "";
+/* =========================================================
+   23. PROFILE IMAGE INPUT
+   ========================================================= */
 
-        return;
-    }
+function setupProfileImageInput() {
+
+    const imageInput =
+        document.getElementById(
+            "profileImage"
+        ) ||
+        document.querySelector(
+            'input[type="file"]'
+        );
+
+    if (!imageInput) return;
+
+    imageInput.addEventListener(
+        "change",
+        loadImage
+    );
+}
 
 
+/* =========================================================
+   24. SMOOTH SCROLL
+   ========================================================= */
 
-    // =================================================
-    // DISPLAY IMAGE
-    // =================================================
+function setupSmoothScroll() {
+
+    const links =
+        document.querySelectorAll(
+            'a[href^="#"]'
+        );
+
+    links.forEach(function (link) {
+
+        link.addEventListener(
+            "click",
+            function (event) {
+
+                const targetId =
+                    link.getAttribute(
+                        "href"
+                    );
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+                if (target) {
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                }
+            }
+        );
+    });
+}
+
+
+/* =========================================================
+   25. CURRENT YEAR
+   ========================================================= */
+
+function setCurrentYear() {
+
+    const yearElements =
+        document.querySelectorAll(
+            "#currentYear, .current-year"
+        );
+
+    yearElements.forEach(function (element) {
+
+        element.textContent =
+            new Date().getFullYear();
+    });
+}
+
+
+/* =========================================================
+   26. HERO IMAGE SLIDER
+   ========================================================= */
+
+let currentHeroSlide = 0;
+
+const heroImages = [
+    "images/student_portal_sharp_rectangle.png",
+    "images/login page.png",
+    "images/student_portal_sharp_rectangle.png"
+];
+
+
+function showHeroSlide(index) {
 
     const image =
-        document.getElementById("preview");
+        document.getElementById(
+            "heroSliderImage"
+        );
+
+    const dots =
+        document.querySelectorAll(
+            ".hero-dot"
+        );
+
+    if (!image) return;
 
 
-    const defaultProfile =
-        document.getElementById("defaultProfile");
-
-
-    if (image) {
-
-        image.src =
-            URL.createObjectURL(file);
-
-        image.style.display =
-            "block";
+    if (index >= heroImages.length) {
+        currentHeroSlide = 0;
+    }
+    else if (index < 0) {
+        currentHeroSlide =
+            heroImages.length - 1;
+    }
+    else {
+        currentHeroSlide = index;
     }
 
 
-    if (defaultProfile) {
+    image.src =
+        heroImages[currentHeroSlide];
 
-        defaultProfile.style.display =
-            "none";
-    }
 
+    dots.forEach(function (dot, i) {
+
+        dot.classList.toggle(
+            "active",
+            i === currentHeroSlide
+        );
+    });
 }
+
+
+function nextHeroSlide() {
+
+    showHeroSlide(
+        currentHeroSlide + 1
+    );
+}
+
+
+function previousHeroSlide() {
+
+    showHeroSlide(
+        currentHeroSlide - 1
+    );
+}
+
+
+/* =========================================================
+   27. MAIN INITIALIZATION
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        /* Registration */
+        setupRegistrationValidation();
+
+
+        /* Profile */
+        const profileForm =
+            document.getElementById(
+                "profileForm"
+            );
+
+        if (profileForm) {
+            setupProfileValidation(
+                profileForm
+            );
+        }
+
+
+        /* Profile data */
+        loadProfileData();
+
+        setupProfilePhotoStorage();
+
+        setupSharedProfilePhoto();
+
+
+        /* Theme */
+        setupThemeToggle();
+
+
+        /* Notification */
+        createNotificationBanner();
+
+
+        /* Modal */
+        setupModalPopup();
+
+
+        /* Slider */
+        setupContentSlider();
+
+
+        /* FAQ */
+        setupFAQ();
+
+
+        /* Hamburger */
+        setupHamburgerMenu();
+
+
+        /* User information */
+        updateUserName();
+
+        updateAllProfilePhotos();
+
+
+        /* Logout */
+        setupLogoutButtons();
+
+
+        /* Page protection */
+        protectPrivatePage();
+
+        redirectLoggedInUser();
+
+
+        /* Form errors */
+        setupInputErrorRemoval();
+
+
+        /* Profile image */
+        setupProfileImageInput();
+
+
+        /* Smooth scrolling */
+        setupSmoothScroll();
+
+
+        /* Footer year */
+        setCurrentYear();
+    }
+);
+
+
+/* =========================================================
+   28. UPDATE AFTER PAGE LOAD
+   ========================================================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        setupSharedProfilePhoto();
+
+        updateAllProfilePhotos();
+
+        updateUserName();
+    }
+);

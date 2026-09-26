@@ -673,39 +673,7 @@
      JAVASCRIPT
 ===================================================== -->
 
-<script>
-
-function loginUser(event) {
-
-    event.preventDefault();
-
-
-    // Get username/email
-
-    var username =
-        document.getElementById("username").value;
-
-
-    // Get password
-
-    var password =
-        document.getElementById("password").value;
-
-
-    // Save login status
-
-    localStorage.setItem("loggedIn", "true");
-
-    localStorage.setItem("user", username);
-
-
-    // Open Home Page
-
-    window.location.href = "home.html";
-
-}
-
-</script>
+<script src="script.js"></script>
 
 
 </body>

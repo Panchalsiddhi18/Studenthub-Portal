@@ -6,171 +6,292 @@
     <title>StudentHub Portal - Events</title>
 
     <link rel="stylesheet" href="style.css">
+
     <script src="script.js"></script>
 
     <style>
 
-        .event-box{
-            width:850px;
-            margin:30px auto;
-            background:#dbdbd6b3;
-            border:1px solid gray;
-            padding:30px;
-            box-sizing:border-box;
+        /* ================= EVENTS BOX ================= */
+
+        .event-box {
+            width: 100%;
+            max-width: 850px;
+            margin: 30px auto;
+            background: #dbdbd6b3;
+            border: 1px solid gray;
+            padding: 30px;
+            box-sizing: border-box;
         }
 
-        .event-title{
-            text-align:center;
-            color:#011935;
-            margin-bottom:30px;
+        .event-title {
+            text-align: center;
+            color: #011935;
+            margin-bottom: 30px;
         }
 
-        table{
-            width:100%;
-            border-collapse:collapse;
+
+        /* ================= EVENT TABLE ================= */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        th,td{
-            border:1px solid black;
-            padding:12px;
-            text-align:center;
+        th,
+        td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: center;
         }
 
-        th{
-            background-color:#011935;
-            color:white;
+        th {
+            background-color: #011935;
+            color: white;
         }
 
-        tr:nth-child(even){
-            background-color:#f2f2f2;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+        /* ================= PROFILE ICON ================= */
+
+        .profile svg {
+            display: block;
+            width: 40px;
+            height: 40px;
+        }
+
+
+        /* ================= MOBILE RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .event-box {
+                width: 95%;
+                margin: 20px auto;
+                padding: 20px 15px;
+                box-sizing: border-box;
+                overflow-x: auto;
+            }
+
+            .event-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            table {
+                min-width: 600px;
+            }
+
+            th,
+            td {
+                padding: 10px 8px;
+                font-size: 14px;
+            }
+
+            .event-box h3 {
+                font-size: 20px;
+            }
+
+            .event-box ul {
+                padding-left: 20px;
+                line-height: 25px;
+            }
+
+            .profile svg {
+                width: 32px;
+                height: 32px;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-<header>
-    <div class="header-content">
 
-        <div class="header-text">
-            <h1>StudentHub Portal</h1>
-            
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="header-content">
+
+            <div class="header-text">
+
+                <h1>StudentHub Portal</h1>
+
+            </div>
+
+
+            <div class="profile">
+
+                <a href="profile.html">
+
+                    <svg width="40"
+                         height="40"
+                         viewBox="0 0 24 24"
+                         fill="white"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <circle cx="12" cy="8" r="4"></circle>
+
+                        <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
+
+                    </svg>
+
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="profile">
+    </header>
 
-    <a href="profile.html" title="View Profile">
 
-        <svg xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 16 16">
+    <!-- ================= NAVIGATION ================= -->
 
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+    <nav>
 
-            <path fill-rule="evenodd"
-                  d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+        <a href="home.html">Home</a>
 
-        </svg>
+        <a href="dashboard.html">Dashboard</a>
 
-    </a>
+        <a href="profile.html">Profile</a>
 
-</div>
+        <a href="events.html">Events</a>
+
+        <a href="contact.html">Contact</a>
+
+        <a href="about.html">About Us</a>
+
+        <a href="#" onclick="logout()">Logout</a>
+
+    </nav>
+
+
+    <!-- ================= EVENTS SECTION ================= -->
+
+    <div class="event-box">
+
+        <h2 class="event-title">
+            Upcoming College Events
+        </h2>
+
+
+        <table>
+
+            <tr>
+
+                <th>Event Name</th>
+
+                <th>Date</th>
+
+                <th>Venue</th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Technical Fest</td>
+
+                <td>10 August 2026</td>
+
+                <td>College Auditorium</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Sports Week</td>
+
+                <td>20 August 2026</td>
+
+                <td>College Ground</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Coding Competition</td>
+
+                <td>5 September 2026</td>
+
+                <td>Computer Lab</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Seminar on AI</td>
+
+                <td>15 September 2026</td>
+
+                <td>Seminar Hall</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Cultural Program</td>
+
+                <td>25 September 2026</td>
+
+                <td>Main Stage</td>
+
+            </tr>
+
+        </table>
+
+
+        <br>
+
+
+        <!-- ================= INSTRUCTIONS ================= -->
+
+        <h3>Instructions</h3>
+
+        <ul>
+
+            <li>
+                Students should register before participating in any event.
+            </li>
+
+            <li>
+                Carry your college ID card during the event.
+            </li>
+
+            <li>
+                Reach the venue 15 minutes before the event starts.
+            </li>
+
+            <li>
+                Follow all college rules and regulations.
+            </li>
+
+        </ul>
+
     </div>
 
-</header>
 
-<nav>
+    <!-- ================= FOOTER ================= -->
 
-<a href="home.html">Home</a>
+    <footer>
 
-<a href="dashboard.html">Dashboard</a>
+        <p>
+            © 2028 StudentHub Portal. All Rights Reserved.
+        </p>
 
-<a href="profile.html">Profile</a>
+    </footer>
 
-<a href="events.html">Events</a>
-
-<a href="contact.html">Contact</a>
-
-<a href="about.html">About Us</a>
-
-<a href="#" onclick="logout()">Logout</a>
-
-</nav>
-
-<div class="event-box">
-
-<h2 class="event-title">Upcoming College Events</h2>
-
-<table>
-
-<tr>
-<th>Event Name</th>
-<th>Date</th>
-<th>Venue</th>
-</tr>
-
-<tr>
-<td>Technical Fest</td>
-<td>10 August 2026</td>
-<td>College Auditorium</td>
-</tr>
-
-<tr>
-<td>Sports Week</td>
-<td>20 August 2026</td>
-<td>College Ground</td>
-</tr>
-
-<tr>
-<td>Coding Competition</td>
-<td>5 September 2026</td>
-<td>Computer Lab</td>
-</tr>
-
-<tr>
-<td>Seminar on AI</td>
-<td>15 September 2026</td>
-<td>Seminar Hall</td>
-</tr>
-
-<tr>
-<td>Cultural Program</td>
-<td>25 September 2026</td>
-<td>Main Stage</td>
-</tr>
-
-</table>
-
-<br>
-
-<h3>Instructions</h3>
-
-<ul>
-
-<li>Students should register before participating in any event.</li>
-
-<li>Carry your college ID card during the event.</li>
-
-<li>Reach the venue 15 minutes before the event starts.</li>
-
-<li>Follow all college rules and regulations.</li>
-
-</ul>
-
-</div>
-
-<footer>
-
-<p><b>StudentHub Portal</b></p>
-
-<p>Email : studenthub@gmail.com</p>
-
-<p>Phone : +91 9876543210</p>
-
-<p>© 2026 StudentHub Portal</p>
-
-</footer>
 
 </body>
 

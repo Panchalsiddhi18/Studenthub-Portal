@@ -10,7 +10,9 @@
 
     <title>StudentHub Portal - About Us</title>
 
+
     <!-- Google Font -->
+
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -21,31 +23,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet">
 
+
     <!-- Your CSS -->
+
     <link rel="stylesheet"
           href="style.css">
 
-          <script src="script.js"></script>
+    <script src="script.js"></script>
 
 
     <style>
 
-        /* ================= ABOUT BOX ================= */
+
+        /* =====================================================
+           ABOUT BOX
+        ===================================================== */
 
         .about-box {
 
-            width: 850px;
-            max-width: 90%;
+            width: 100%;
+
+            max-width: 850px;
 
             margin: 40px auto;
 
-            background: #dbdbd6b3;;
+            background: #dbdbd6b3;
 
             border: 1px solid #011935;
 
             border-radius: 10px;
 
-            padding: 35px;
+            padding: 25px;
 
             box-sizing: border-box;
 
@@ -54,7 +62,9 @@
         }
 
 
-        /* ================= TITLE ================= */
+        /* =====================================================
+           TITLE
+        ===================================================== */
 
         .about-title {
 
@@ -66,16 +76,19 @@
 
         }
 
+
         .about-title h2 {
 
             margin: 0;
 
-            font-size: 30px;
+            font-size: 26px;
 
         }
 
 
-        /* ================= CONTENT ================= */
+        /* =====================================================
+           CONTENT
+        ===================================================== */
 
         .about-content {
 
@@ -99,9 +112,9 @@
 
         .about-content p {
 
-            font-size: 17px;
+            font-size: 15px;
 
-            line-height: 28px;
+            line-height: 25px;
 
             color: #222;
 
@@ -112,13 +125,18 @@
         }
 
 
-        /* ================= CARDS ================= */
+        /* =====================================================
+           INFORMATION CARDS
+           MOBILE FIRST
+        ===================================================== */
 
         .about-cards {
 
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            /* Mobile: one column */
+
+            grid-template-columns: 1fr;
 
             gap: 20px;
 
@@ -175,7 +193,10 @@
         }
 
 
-        /* ================= PROFILE LOGO ================= */
+        /* =====================================================
+           PROFILE LOGO
+           FLEXBOX
+        ===================================================== */
 
         .profile {
 
@@ -222,7 +243,9 @@
         }
 
 
-        /* ================= BACK BUTTON ================= */
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
 
         .back-button {
 
@@ -263,44 +286,46 @@
         }
 
 
-        /* ================= MOBILE ================= */
+        /* =====================================================
+           DESKTOP RESPONSIVE
+        ===================================================== */
 
-        @media (max-width: 700px) {
+        @media (min-width: 701px) {
+
 
             .about-box {
 
-                width: 95%;
-
-                max-width: 95%;
-
-                padding: 25px;
+                padding: 35px;
 
             }
 
 
             .about-title h2 {
 
-                font-size: 25px;
+                font-size: 30px;
 
             }
 
 
             .about-content p {
 
-                font-size: 15px;
+                font-size: 17px;
 
-                line-height: 25px;
+                line-height: 28px;
 
             }
 
 
+            /* Three columns on desktop */
+
             .about-cards {
 
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
 
             }
 
         }
+
 
     </style>
 
@@ -310,7 +335,9 @@
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -324,32 +351,35 @@
         </div>
 
 
-        <!-- ONE PROFILE LOGO ONLY -->
+        <!-- Profile Logo -->
 
         <div class="profile">
 
-    <a href="profile.html" title="View Profile">
+            <a href="profile.html"
+               title="View Profile">
 
-        <svg xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
 
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 
-            <path fill-rule="evenodd"
-                  d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
 
-        </svg>
+                </svg>
 
-    </a>
+            </a>
 
-     </div>
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- ================= NAVIGATION ================= -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <nav>
 
@@ -368,17 +398,23 @@
     <a href="contact.html">Contact</a>
 
     <a href="about.html">About Us</a>
-    <a href="#" onclick="logout()">Logout</a>
+
+    <a href="#"
+       onclick="logout(); return false;">
+
+        Logout
+
+    </a>
 
 </nav>
 
 
-<!-- ================= ABOUT US ================= -->
+<!-- =====================================================
+     ABOUT US
+===================================================== -->
 
 <div class="about-box">
 
-
-    
 
     <div class="about-content">
 
@@ -420,7 +456,9 @@
     </div>
 
 
-    <!-- Information Cards -->
+    <!-- =================================================
+         INFORMATION CARDS
+    ================================================= -->
 
     <div class="about-cards">
 
@@ -473,23 +511,41 @@
     </div>
 
 
-    
-
-
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-    <p><b>StudentHub Portal</b></p>
+    <p>
 
-    <p>Email : studenthub@gmail.com</p>
+        <b>StudentHub Portal</b>
 
-    <p>Phone : +91 9876543210</p>
+    </p>
 
-    <p>© 2026 StudentHub Portal</p>
+
+    <p>
+
+        Email : studenthub@gmail.com
+
+    </p>
+
+
+    <p>
+
+        Phone : +91 9876543210
+
+    </p>
+
+
+    <p>
+
+        © 2026 StudentHub Portal
+
+    </p>
 
 </footer>
 

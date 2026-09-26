@@ -640,3 +640,1279 @@ footer p {
     }
 
 }
+/* =====================================================
+   DYNAMIC UI COMPONENTS
+   StudentHub Portal
+===================================================== */
+
+
+/* =====================================================
+   HAMBURGER MENU
+===================================================== */
+
+.menu-toggle {
+    display: none;
+
+    background: transparent;
+    color: inherit;
+
+    border: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    padding: 5px 10px;
+}
+
+
+/* =====================================================
+   THEME BUTTON
+===================================================== */
+
+.theme-toggle {
+    background: transparent;
+
+    color: inherit;
+
+    border: 1px solid currentColor;
+
+    border-radius: 5px;
+
+    padding: 7px 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    margin-left: 8px;
+
+    transition: 0.3s;
+}
+
+.theme-toggle:hover {
+    opacity: 0.8;
+}
+
+
+/* =====================================================
+   NOTIFICATION BANNER
+===================================================== */
+
+.student-notification {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background-color: #d6e5f7;
+
+    color: #011935;
+
+    padding: 12px 45px 12px 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    border-bottom: 1px solid #011935;
+
+    position: relative;
+}
+
+.student-notification button {
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #011935;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   MODAL POPUP
+===================================================== */
+
+.student-modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+.student-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    width: 500px;
+
+    max-width: 95%;
+
+    background: white;
+
+    border: 1px solid #011935;
+
+    border-radius: 10px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    position: relative;
+
+    animation: modalOpen 0.3s ease;
+}
+
+.modal-content h2 {
+    color: #011935;
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 10px;
+
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    color: #011935;
+}
+
+.modal-button {
+    padding: 10px 22px;
+
+    background-color: #011935;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.modal-button:hover {
+    background-color: #2c5aa0;
+}
+
+@keyframes modalOpen {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* =====================================================
+   CONTENT SLIDER
+===================================================== */
+
+.student-slider {
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 35px auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #011935;
+
+    border-radius: 10px;
+
+    background: #e1e1da;
+}
+
+.slider-track {
+    display: flex;
+
+    transition: transform 0.5s ease;
+}
+
+.slider-slide {
+    min-width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 35px;
+
+    text-align: center;
+}
+
+.slider-slide h2 {
+    color: #011935;
+
+    margin-top: 0;
+}
+
+.slider-slide p {
+    line-height: 1.7;
+
+    margin-bottom: 0;
+}
+
+.slider-buttons {
+    display: flex;
+
+    justify-content: space-between;
+
+    position: absolute;
+
+    left: 10px;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+.slider-buttons button {
+    pointer-events: auto;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: #011935;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+.slider-buttons button:hover {
+    background-color: #2c5aa0;
+}
+
+.slider-dots {
+    text-align: center;
+
+    padding: 10px;
+}
+
+.slider-dot {
+    display: inline-block;
+
+    width: 9px;
+
+    height: 9px;
+
+    margin: 0 4px;
+
+    background: #999;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.slider-dot.active {
+    background: #011935;
+}
+
+
+/* =====================================================
+   COLLAPSIBLE FAQ
+===================================================== */
+
+.faq-question {
+    width: 100%;
+
+    text-align: left;
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: inherit;
+
+    font-weight: bold;
+
+    padding: 15px;
+
+    color: #011935;
+}
+
+.faq-question:hover {
+    background-color: #d6e5f7;
+}
+
+.faq-question::after {
+    content: "+";
+
+    float: right;
+
+    font-size: 22px;
+}
+
+.faq-question.active::after {
+    content: "-";
+}
+
+.faq-answer {
+    display: none;
+
+    padding: 0 15px 15px 45px;
+
+    color: #184a55;
+
+    line-height: 1.6;
+}
+
+.faq-answer.show {
+    display: block;
+}
+
+
+/* =====================================================
+   DARK THEME
+===================================================== */
+
+body.dark-theme {
+    background-color: #1e1e1e;
+
+    color: #eeeeee;
+}
+
+body.dark-theme header,
+body.dark-theme footer,
+body.dark-theme nav {
+    background-color: #111111;
+}
+
+body.dark-theme .content,
+body.dark-theme .dashboard,
+body.dark-theme .faq-box,
+body.dark-theme .about-box,
+body.dark-theme .attendance-container,
+body.dark-theme .result-container,
+body.dark-theme .fees-container,
+body.dark-theme .timetable-container {
+    background-color: #2b2b2b;
+
+    color: #eeeeee;
+}
+
+body.dark-theme .box,
+body.dark-theme .about-card,
+body.dark-theme .notice,
+body.dark-theme .info,
+body.dark-theme .student-slider {
+    background-color: #333333;
+
+    color: #eeeeee;
+}
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme p,
+body.dark-theme li {
+    color: #eeeeee;
+}
+
+body.dark-theme .modal-content {
+    background-color: #2b2b2b;
+
+    color: #eeeeee;
+}
+
+body.dark-theme .modal-content h2,
+body.dark-theme .modal-close {
+    color: #eeeeee;
+}
+
+body.dark-theme .student-notification {
+    background-color: #333333;
+
+    color: #eeeeee;
+}
+
+body.dark-theme .student-notification button {
+    color: #eeeeee;
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .menu-toggle {
+        display: block;
+
+        margin: 8px auto;
+    }
+
+    nav.student-mobile-nav {
+        display: none;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        width: 100%;
+    }
+
+    nav.student-mobile-nav.open {
+        display: flex;
+    }
+
+    nav.student-mobile-nav a {
+        display: block;
+
+        width: 90%;
+
+        text-align: center;
+
+        margin: 4px 0;
+    }
+
+    .theme-toggle {
+        margin: 8px 0;
+    }
+
+    .student-slider {
+        width: 95%;
+    }
+
+    .slider-slide {
+        padding: 30px 45px;
+    }
+
+    .modal-content {
+        padding: 25px;
+    }
+
+}
+
+/* =====================================================
+   STUDENTHUB DYNAMIC UI
+===================================================== */
+
+
+/* =====================================================
+   SHARED PROFILE PHOTO
+===================================================== */
+
+.profile-photo-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border: 2px solid #e1e1da;
+
+}
+
+
+.profile a.has-profile-photo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* =====================================================
+   HAMBURGER MENU
+===================================================== */
+
+.menu-toggle {
+
+    display: none;
+
+    background: transparent;
+
+    color: inherit;
+
+    border: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    padding: 5px 10px;
+
+}
+
+
+/* =====================================================
+   THEME SWITCHER
+===================================================== */
+
+.theme-toggle {
+
+    background: transparent;
+
+    color: inherit;
+
+    border: 1px solid currentColor;
+
+    border-radius: 5px;
+
+    padding: 7px 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    margin-left: 8px;
+
+    transition: 0.3s;
+
+}
+
+
+.theme-toggle:hover {
+
+    opacity: 0.8;
+
+}
+
+
+/* =====================================================
+   NOTIFICATION BANNER
+===================================================== */
+
+.student-notification {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background-color: #d6e5f7;
+
+    color: #011935;
+
+    padding: 12px 45px 12px 20px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+    border-bottom: 1px solid #011935;
+
+    position: relative;
+
+}
+
+
+.student-notification button {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #011935;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.student-modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+}
+
+
+.student-modal.active {
+
+    display: flex;
+
+}
+
+
+.modal-content {
+
+    width: 500px;
+
+    max-width: 95%;
+
+    background: white;
+
+    border: 1px solid #011935;
+
+    border-radius: 10px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    position: relative;
+
+    animation: modalOpen 0.3s ease;
+
+}
+
+
+.modal-content h2 {
+
+    color: #011935;
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+
+}
+
+
+.modal-content p {
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+
+}
+
+
+.modal-close {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    color: #011935;
+
+}
+
+
+.modal-button {
+
+    padding: 10px 22px;
+
+    background-color: #011935;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+.modal-button:hover {
+
+    background-color: #2c5aa0;
+
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(.88)
+        translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1)
+        translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   CONTENT SLIDER
+===================================================== */
+
+.student-slider {
+
+    width: 90%;
+
+    max-width: 850px;
+
+    margin: 35px auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #011935;
+
+    border-radius: 10px;
+
+    background: #e1e1da;
+
+}
+
+
+.slider-track {
+
+    display: flex;
+
+    transition: transform .5s ease;
+
+}
+
+
+.slider-slide {
+
+    min-width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 35px;
+
+    text-align: center;
+
+}
+
+
+.slider-slide h2 {
+
+    color: #011935;
+
+    margin-top: 0;
+
+}
+
+
+.slider-slide p {
+
+    line-height: 1.7;
+
+    margin-bottom: 0;
+
+}
+
+
+.slider-buttons {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    position: absolute;
+
+    left: 10px;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+}
+
+
+.slider-buttons button {
+
+    pointer-events: auto;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: #011935;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+}
+
+
+.slider-buttons button:hover {
+
+    background-color: #2c5aa0;
+
+}
+
+
+.slider-dots {
+
+    text-align: center;
+
+    padding: 10px;
+
+}
+
+
+.slider-dot {
+
+    display: inline-block;
+
+    width: 9px;
+
+    height: 9px;
+
+    margin: 0 4px;
+
+    background: #999;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+}
+
+
+.slider-dot.active {
+
+    background: #011935;
+
+}
+
+
+/* =====================================================
+   COLLAPSIBLE FAQ
+===================================================== */
+
+.faq-question {
+
+    width: 100%;
+
+    text-align: left;
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: inherit;
+
+    font-weight: bold;
+
+    padding: 15px;
+
+    color: #011935;
+
+}
+
+
+.faq-question::after {
+
+    content: "+";
+
+    float: right;
+
+    font-size: 22px;
+
+}
+
+
+.faq-question.active::after {
+
+    content: "−";
+
+}
+
+
+.faq-question:hover {
+
+    background: #d6e5f7;
+
+}
+
+
+.faq-answer {
+
+    display: none;
+
+    padding: 0 15px 15px 45px;
+
+    line-height: 1.6;
+
+}
+
+
+.faq-answer.show {
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   DARK THEME
+===================================================== */
+
+body.dark-theme {
+
+    background-color: #1e1e1e;
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme header,
+body.dark-theme footer,
+body.dark-theme nav {
+
+    background-color: #111111;
+
+}
+
+
+body.dark-theme .content,
+body.dark-theme .dashboard,
+body.dark-theme .faq-box,
+body.dark-theme .about-box,
+body.dark-theme .attendance-container,
+body.dark-theme .result-container,
+body.dark-theme .fees-container,
+body.dark-theme .timetable-container {
+
+    background-color: #2b2b2b;
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme .box,
+body.dark-theme .about-card,
+body.dark-theme .notice,
+body.dark-theme .info,
+body.dark-theme .student-slider {
+
+    background-color: #333333;
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme p,
+body.dark-theme li {
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme .modal-content {
+
+    background-color: #2b2b2b;
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme .modal-content h2,
+body.dark-theme .modal-close {
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme .student-notification {
+
+    background-color: #333333;
+
+    color: #eeeeee;
+
+}
+
+
+body.dark-theme .student-notification button {
+
+    color: #eeeeee;
+
+}
+
+
+/* =====================================================
+   MOBILE / HAMBURGER
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .menu-toggle {
+
+        display: block;
+
+        margin: 8px auto;
+
+    }
+
+
+    nav.student-mobile-nav {
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        width: 100%;
+
+    }
+
+
+    nav.student-mobile-nav.open {
+
+        display: flex;
+
+    }
+
+
+    nav.student-mobile-nav a {
+
+        display: block;
+
+        width: 90%;
+
+        text-align: center;
+
+        margin: 4px 0;
+
+    }
+
+
+    .theme-toggle {
+
+        margin: 8px 0;
+
+    }
+
+
+    .student-slider {
+
+        width: 95%;
+
+    }
+
+
+    .slider-slide {
+
+        padding: 30px 45px;
+
+    }
+
+
+    .modal-content {
+
+        padding: 25px;
+
+    }
+
+}
+/* Dark / Light Mode Navigation Button */
+
+#themeToggle {
+    padding: 8px 12px;
+    margin-left: 10px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    background: transparent;
+    color: white;
+
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+#themeToggle:hover {
+    background: white;
+    color: #011935;
+}
+/* ================= HAMBURGER MENU ================= */
+
+.hamburger-menu {
+    display: none;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    font-size: 24px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Mobile Navigation */
+
+@media (max-width: 700px) {
+
+    nav {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hamburger-menu {
+        display: block;
+        align-self: flex-end;
+        margin: 5px 10px;
+    }
+
+    nav a {
+        display: none;
+        text-align: center;
+        padding: 12px;
+        width: 100%;
+    }
+
+    nav.nav-open a {
+        display: block;
+    }
+}
+

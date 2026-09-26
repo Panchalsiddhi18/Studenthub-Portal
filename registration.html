@@ -30,13 +30,13 @@
         /* ================= REGISTRATION BOX ================= */
 
         .registration-box {
-            width: 650px;
-            max-width: 90%;
-            margin: 40px auto;
+            width: 100%;
+            max-width: 650px;
+            margin: 30px auto;
             background-color: #e1e1da;
             border: 1px solid #011935;
             border-radius: 10px;
-            padding: 30px;
+            padding: 22px;
             box-sizing: border-box;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
         }
@@ -52,7 +52,7 @@
 
         .registration-title h2 {
             margin: 0;
-            font-size: 28px;
+            font-size: 25px;
         }
 
 
@@ -172,14 +172,36 @@
         }
 
 
-        /* ================= MOBILE ================= */
+        /* ================= DESKTOP ================= */
 
-        @media (max-width: 600px) {
+        @media (min-width: 601px) {
 
             .registration-box {
-                width: 95%;
-                max-width: 95%;
-                padding: 22px;
+                padding: 30px;
+            }
+
+            .registration-title h2 {
+                font-size: 28px;
+            }
+
+        }
+
+
+        /* ================= SMALL MOBILE ================= */
+
+        @media (max-width: 400px) {
+
+            .registration-box {
+                padding: 18px;
+                margin: 20px auto;
+            }
+
+            .registration-title h2 {
+                font-size: 22px;
+            }
+
+            .gender {
+                line-height: 30px;
             }
 
         }
@@ -347,6 +369,82 @@
                 minlength="8"
                 autocomplete="new-password"
                 required>
+
+        </div>
+
+
+        <!-- ================= COURSE ================= -->
+
+        <div class="form-group">
+
+            <label for="course">
+                Course :
+            </label>
+
+            <select
+                id="course"
+                class="registration-input"
+                required>
+
+                <option value="">
+                    Select Course
+                </option>
+
+                <option value="Computer Engineering">
+                    Computer Engineering
+                </option>
+
+                <option value="Information Technology">
+                    Information Technology
+                </option>
+
+                <option value="Computer Science">
+                    Computer Science
+                </option>
+
+                <option value="Electronics Engineering">
+                    Electronics Engineering
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ================= YEAR ================= -->
+
+        <div class="form-group">
+
+            <label for="year">
+                Year :
+            </label>
+
+            <select
+                id="year"
+                class="registration-input"
+                required>
+
+                <option value="">
+                    Select Year
+                </option>
+
+                <option value="1st Year">
+                    1st Year
+                </option>
+
+                <option value="2nd Year">
+                    2nd Year
+                </option>
+
+                <option value="3rd Year">
+                    3rd Year
+                </option>
+
+                <option value="4th Year">
+                    4th Year
+                </option>
+
+            </select>
 
         </div>
 

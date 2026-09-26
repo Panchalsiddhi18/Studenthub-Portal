@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
 <title>StudentHub Portal - Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
@@ -13,18 +15,23 @@
 /* ================= DASHBOARD ================= */
 
 .dashboard{
-    width:850px;
-    margin:30px auto;
+    width:100%;
+    max-width:850px;
+    margin:25px auto;
     background:white;
-    padding:30px 40px;
+    padding:25px;
     border:1px solid gray;
+    box-sizing:border-box;
 }
+
+
+/* ================= DASHBOARD TITLE ================= */
 
 .dashboard h2{
     text-align:center;
     color:#1e3558;
-    margin:10px 0 35px 0;
-    font-size:30px;
+    margin:10px 0 30px 0;
+    font-size:25px;
 }
 
 
@@ -32,17 +39,17 @@
 
 .box-container{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:25px;
+    grid-template-columns:1fr;
+    gap:20px;
     width:100%;
-    margin:0 auto 35px auto;
+    margin:0 auto 30px auto;
 }
 
 
 /* ================= BOX ================= */
 
 .box{
-    height:175px;
+    min-height:160px;
     width:100%;
     border:1px solid #999;
     background:#cecfcd;
@@ -57,6 +64,8 @@
     box-shadow:0 2px 6px rgba(0,0,0,0.12);
 
     transition:all 0.25s ease;
+
+    box-sizing:border-box;
 }
 
 
@@ -64,7 +73,7 @@
 
 .box a{
     width:100%;
-    height:100%;
+    min-height:160px;
 
     display:flex;
     flex-direction:column;
@@ -76,6 +85,9 @@
 
     text-decoration:none;
     color:black;
+
+    padding:15px;
+    box-sizing:border-box;
 }
 
 
@@ -92,7 +104,7 @@
 
 .box h3{
     color:#2c5aa0;
-    font-size:21px;
+    font-size:20px;
     margin:0 0 10px 0;
 }
 
@@ -101,7 +113,7 @@
 
 .box p{
     color:black;
-    font-size:15px;
+    font-size:14px;
     margin:0;
 }
 
@@ -124,6 +136,7 @@
     padding:18px;
     background:#d8e2f1;
     border-radius:6px;
+    box-sizing:border-box;
 }
 
 .notice h3{
@@ -134,6 +147,7 @@
 .notice ul{
     line-height:30px;
     margin-bottom:5px;
+    padding-left:25px;
 }
 
 
@@ -145,6 +159,7 @@
     padding:18px;
     background:#d8e2f1;
     border-radius:6px;
+    box-sizing:border-box;
 }
 
 .info h3{
@@ -152,18 +167,94 @@
     margin-top:0;
 }
 
+.info p{
+    line-height:1.6;
+}
 
-/* ================= MOBILE ================= */
 
-@media(max-width:700px){
+/* ================= TABLET ================= */
+
+@media (min-width:601px){
 
     .dashboard{
-        width:90%;
-        padding:25px;
+        padding:30px;
+    }
+
+    .dashboard h2{
+        font-size:28px;
     }
 
     .box-container{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
+        gap:25px;
+    }
+
+    .box{
+        height:175px;
+        min-height:175px;
+    }
+
+    .box a{
+        height:100%;
+        min-height:175px;
+    }
+
+}
+
+
+/* ================= LARGE DESKTOP ================= */
+
+@media (min-width:901px){
+
+    .dashboard{
+        padding:30px 40px;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width:400px){
+
+    .dashboard{
+        margin:20px auto;
+        padding:18px;
+    }
+
+    .dashboard h2{
+        font-size:22px;
+        margin-bottom:25px;
+    }
+
+    .box{
+        min-height:150px;
+    }
+
+    .box a{
+        min-height:150px;
+        padding:12px;
+    }
+
+    .box-icon{
+        font-size:36px;
+    }
+
+    .box h3{
+        font-size:18px;
+    }
+
+    .box p{
+        font-size:13px;
+    }
+
+    .notice,
+    .info{
+        padding:15px;
+    }
+
+    .notice ul{
+        padding-left:20px;
     }
 
 }
@@ -190,21 +281,21 @@
 
         <div class="profile">
 
-    <a href="profile.html" title="View Profile">
+            <a href="profile.html" title="View Profile">
 
-        <svg xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
 
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 
-            <path fill-rule="evenodd"
-                  d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
 
-        </svg>
+                </svg>
 
-    </a>
+            </a>
 
-</div>
+        </div>
 
     </div>
 
@@ -375,9 +466,13 @@
 </footer>
 
 
-</body>
 <script>
+
     checkLogin();
+
 </script>
+
+
+</body>
 
 </html>
