@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Semester Registration",
+        "date": "2026-08-01",
+        "category": "Academic",
+        "description": "Semester registration is now open for students."
+    },
+    {
+        "id": 2,
+        "title": "Technical Fest Registration",
+        "date": "2026-09-15",
+        "category": "Event",
+        "description": "Students can register for the upcoming technical fest."
+    },
+    {
+        "id": 3,
+        "title": "Assignment Submission",
+        "date": "2026-09-25",
+        "category": "Academic",
+        "description": "Submit your pending assignments before the deadline."
+    },
+    {
+        "id": 4,
+        "title": "Sports Week",
+        "date": "2026-10-20",
+        "category": "Sports",
+        "description": "Sports week activities will begin from October."
+    }
+]

@@ -1392,6 +1392,14 @@ document.addEventListener(
                 profileForm
             );
         }
+        loadEventsFromJSON();
+        setupEventSearch();
+        setupEventFilter();
+        setupEventSorting();
+        loadStudentProfilesFromJSON();
+        setupStudentSearch();
+        setupStudentDepartmentFilter();
+        setupStudentSorting();
 
 
         /* Profile data */
@@ -1475,3 +1483,979 @@ window.addEventListener(
         updateUserName();
     }
 );
+/* =========================================================
+   EVENTS - FETCH DATA FROM JSON
+   ========================================================= */
+
+/* =========================================================
+   EVENTS - FETCH, SEARCH, FILTER, SORTING & PAGINATION
+   ========================================================= */
+
+let allEvents = [];
+let allStudents = [];  
+let currentStudentPage = 1;
+
+const studentsPerPage = 5; 
+
+let currentEventPage = 1;
+
+const eventsPerPage = 5;
+const totalPages = 2
+
+
+/* =========================================================
+   LOAD EVENTS FROM JSON
+   ========================================================= */
+
+function loadEventsFromJSON() {
+
+    const eventsTableBody =
+        document.getElementById("eventsTableBody");
+
+    if (!eventsTableBody) {
+        return;
+    }
+
+    fetch("data/events.json")
+
+        .then(function (response) {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load events.json"
+                );
+            }
+
+            return response.json();
+        })
+
+        .then(function (events) {
+
+            allEvents = events;
+
+            currentEventPage = 1;
+
+            renderEvents();
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "Error loading events:",
+                error
+            );
+
+            eventsTableBody.innerHTML = `
+                <tr>
+                    <td colspan="3">
+                        Unable to load events.
+                    </td>
+                </tr>
+            `;
+        });
+}
+
+
+/* =========================================================
+   RENDER EVENTS
+   ========================================================= */
+
+function renderEvents() {
+
+    const eventsTableBody =
+        document.getElementById("eventsTableBody");
+
+    if (!eventsTableBody) {
+        return;
+    }
+
+
+    /* ---------- SEARCH ---------- */
+
+    const searchInput =
+        document.getElementById("eventSearch");
+
+    const searchText =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
+
+    const departmentFilter =
+    document.getElementById("studentDepartment");
+
+const selectedDepartment =
+    departmentFilter
+        ? departmentFilter.value.toLowerCase()
+        : "all";
+
+
+    /* ---------- CATEGORY FILTER ---------- */
+
+    const categoryFilter =
+        document.getElementById("eventCategory");
+
+    const selectedCategory =
+        categoryFilter
+            ? categoryFilter.value.toLowerCase()
+            : "all";
+
+
+    /* ---------- SORTING ---------- */
+
+    const sortSelect =
+        document.getElementById("eventSort");
+
+    const selectedSort =
+        sortSelect
+            ? sortSelect.value
+            : "default";
+
+
+    /* ---------- FILTER EVENTS ---------- */
+
+    let filteredEvents =
+        allEvents.filter(function (event) {
+
+            const eventText = (
+                event.title +
+                " " +
+                event.date +
+                " " +
+                event.venue +
+                " " +
+                event.category
+            ).toLowerCase();
+
+
+            const matchesSearch =
+                eventText.includes(searchText);
+
+
+            const matchesCategory =
+                selectedCategory === "all" ||
+                event.category.toLowerCase() ===
+                selectedCategory;
+
+
+            return (
+                matchesSearch &&
+                matchesCategory
+            );
+
+        });
+
+
+    /* ---------- SORT EVENTS ---------- */
+
+    if (selectedSort === "nameAsc") {
+
+        filteredEvents.sort(function (a, b) {
+
+            return a.title.localeCompare(b.title);
+
+        });
+
+    }
+
+
+    if (selectedSort === "nameDesc") {
+
+        filteredEvents.sort(function (a, b) {
+
+            return b.title.localeCompare(a.title);
+
+        });
+
+    }
+
+
+    if (selectedSort === "dateAsc") {
+
+        filteredEvents.sort(function (a, b) {
+
+            return new Date(a.date) -
+                   new Date(b.date);
+
+        });
+
+    }
+
+
+    if (selectedSort === "dateDesc") {
+
+        filteredEvents.sort(function (a, b) {
+
+            return new Date(b.date) -
+                   new Date(a.date);
+
+        });
+
+    }
+
+
+    /* ---------- PAGINATION ---------- */
+
+    const totalPages =
+        Math.ceil(
+            filteredEvents.length /
+            eventsPerPage
+        );
+
+
+    if (
+        totalPages > 0 &&
+        currentEventPage > totalPages
+    ) {
+
+        currentEventPage = totalPages;
+
+    }
+
+
+    if (totalPages === 0) {
+
+        eventsTableBody.innerHTML = `
+            <tr>
+                <td colspan="3">
+                    No events found.
+                </td>
+            </tr>
+        `;
+
+        renderEventPagination(0);
+
+        return;
+    }
+
+
+    const startIndex =
+        (currentEventPage - 1) *
+        eventsPerPage;
+
+
+    const endIndex =
+        startIndex +
+        eventsPerPage;
+
+
+    const eventsToDisplay =
+        filteredEvents.slice(
+            startIndex,
+            endIndex
+        );
+
+
+    /* ---------- DISPLAY EVENTS ---------- */
+
+    eventsTableBody.innerHTML = "";
+
+
+    eventsToDisplay.forEach(function (event) {
+
+        const row =
+            document.createElement("tr");
+
+
+        row.setAttribute(
+            "data-category",
+            event.category.toLowerCase()
+        );
+
+
+        row.innerHTML = `
+            <td>${event.title}</td>
+            <td>${event.date}</td>
+            <td>${event.venue}</td>
+        `;
+
+
+        eventsTableBody.appendChild(row);
+
+    });
+
+
+    /* ---------- PAGINATION BUTTONS ---------- */
+
+    renderEventPagination(totalPages);
+
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function setupEventSearch() {
+
+    const searchInput =
+        document.getElementById("eventSearch");
+
+    if (!searchInput) {
+        return;
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            currentEventPage = 1;
+
+            renderEvents();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+   ========================================================= */
+
+function setupEventFilter() {
+
+    const filter =
+        document.getElementById("eventCategory");
+
+    if (!filter) {
+        return;
+    }
+
+
+    filter.addEventListener(
+        "change",
+        function () {
+
+            currentEventPage = 1;
+
+            renderEvents();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SORTING
+   ========================================================= */
+
+function setupEventSorting() {
+
+    const sortSelect =
+        document.getElementById("eventSort");
+
+    if (!sortSelect) {
+        return;
+    }
+
+
+    sortSelect.addEventListener(
+        "change",
+        function () {
+
+            currentEventPage = 1;
+
+            renderEvents();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+function renderEventPagination(totalPages) {
+
+    const pagination =
+        document.getElementById(
+            "eventPagination"
+        );
+
+    if (!pagination) {
+        return;
+    }
+
+
+    pagination.innerHTML = "";
+
+
+    if (totalPages <= 1) {
+        return;
+    }
+
+
+    /* ---------- PREVIOUS BUTTON ---------- */
+
+    const previousButton =
+        document.createElement("button");
+
+
+    previousButton.textContent =
+        "Previous";
+
+
+    previousButton.disabled =
+        currentEventPage === 1;
+
+
+    previousButton.addEventListener(
+        "click",
+        function () {
+
+            if (currentEventPage > 1) {
+
+                currentEventPage--;
+
+                renderEvents();
+
+            }
+
+        }
+    );
+
+
+    pagination.appendChild(
+        previousButton
+    );
+
+
+    /* ---------- PAGE NUMBERS ---------- */
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+        const pageButton =
+            document.createElement("button");
+
+
+        pageButton.textContent =
+            page;
+
+
+        if (
+            page === currentEventPage
+        ) {
+
+            pageButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        pageButton.addEventListener(
+            "click",
+            function () {
+
+                currentEventPage =
+                    page;
+
+                renderEvents();
+
+            }
+        );
+
+
+        pagination.appendChild(
+            pageButton
+        );
+
+    }
+
+
+    /* ---------- NEXT BUTTON ---------- */
+
+    const nextButton =
+        document.createElement("button");
+
+
+    nextButton.textContent =
+        "Next";
+
+
+    nextButton.disabled =
+        currentEventPage === totalPages;
+
+
+    nextButton.addEventListener(
+        "click",
+        function () {
+
+            if (
+                currentEventPage <
+                totalPages
+            ) {
+
+                currentEventPage++;
+
+                renderEvents();
+
+            }
+
+        }
+    );
+
+
+    pagination.appendChild(
+        nextButton
+    );
+
+}
+
+
+/* =========================================================
+   STUDENT PROFILES - FETCH, SEARCH & RENDER
+   ========================================================= */
+
+function loadStudentProfilesFromJSON() {
+
+    const studentProfiles =
+        document.getElementById("studentProfiles");
+
+    if (!studentProfiles) {
+        return;
+    }
+
+    fetch("data/students.json")
+
+        .then(function(response) {
+
+            if (!response.ok) {
+                throw new Error("Unable to load students.json");
+            }
+
+            return response.json();
+
+        })
+
+        .then(function(students) {
+
+            allStudents = students;
+
+            renderStudentProfiles();
+
+        })
+
+        .catch(function(error) {
+
+            console.error(
+                "Error loading students:",
+                error
+            );
+
+            studentProfiles.innerHTML = `
+                <p>
+                    Unable to load student profiles.
+                </p>
+            `;
+
+        });
+}
+
+
+/* =========================================================
+   RENDER STUDENT PROFILES
+   ========================================================= */
+
+function renderStudentProfiles() {
+
+    const studentProfiles =
+        document.getElementById("studentProfiles");
+
+    if (!studentProfiles) {
+        return;
+    }
+
+    const searchInput =
+        document.getElementById("studentSearch");
+
+    const searchText =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
+
+
+    const departmentFilter =
+        document.getElementById("studentDepartment");
+
+    const selectedDepartment =
+        departmentFilter
+            ? departmentFilter.value.toLowerCase()
+            : "all";
+
+
+    const filteredStudents =
+        allStudents.filter(function(student) {
+
+            const studentText = (
+                student.name +
+                " " +
+                student.enrollment +
+                " " +
+                student.department +
+                " " +
+                student.semester
+            ).toLowerCase();
+
+            const matchesSearch =
+                studentText.includes(searchText);
+
+            const matchesDepartment =
+                selectedDepartment === "all" ||
+                student.department.toLowerCase() ===
+                selectedDepartment;
+
+            return (
+                matchesSearch &&
+                matchesDepartment
+            );
+
+        });
+        /* ---------- SORT STUDENTS ---------- */
+
+const sortSelect =
+    document.getElementById("studentSort");
+
+const selectedSort =
+    sortSelect
+        ? sortSelect.value
+        : "default";
+
+
+if (selectedSort === "nameAsc") {
+
+    filteredStudents.sort(function(a, b) {
+
+        return a.name.localeCompare(b.name);
+
+    });
+
+}
+
+
+if (selectedSort === "nameDesc") {
+
+    filteredStudents.sort(function(a, b) {
+
+        return b.name.localeCompare(a.name);
+
+    });
+
+}
+
+
+if (selectedSort === "enrollmentAsc") {
+
+    filteredStudents.sort(function(a, b) {
+
+        return a.enrollment.localeCompare(
+            b.enrollment
+        );
+
+    });
+
+}
+
+
+if (selectedSort === "enrollmentDesc") {
+
+    filteredStudents.sort(function(a, b) {
+
+        return b.enrollment.localeCompare(
+            a.enrollment
+        );
+
+    });
+
+}
+
+
+
+    studentProfiles.innerHTML = "";
+
+
+    if (filteredStudents.length === 0) {
+
+        studentProfiles.innerHTML = `
+            <p style="text-align:center;">
+                No students found.
+            </p>
+        `;
+
+        return;
+    }
+    /* ---------- PAGINATION ---------- */
+
+const totalPages =
+    Math.ceil(
+        filteredStudents.length /
+        studentsPerPage
+    );
+
+if (
+    totalPages > 0 &&
+    currentStudentPage > totalPages
+) {
+    currentStudentPage = totalPages;
+}
+
+
+const startIndex =
+    (currentStudentPage - 1) *
+    studentsPerPage;
+
+const endIndex =
+    startIndex +
+    studentsPerPage;
+
+
+const studentsToDisplay =
+    filteredStudents.slice(
+        startIndex,
+        endIndex
+    );
+
+    studentsToDisplay.forEach(function(student){
+
+        const studentCard =
+            document.createElement("div");
+
+        studentCard.style.border =
+            "1px solid #011935";
+
+        studentCard.style.borderRadius =
+            "8px";
+
+        studentCard.style.padding =
+            "15px";
+
+        studentCard.style.marginBottom =
+            "15px";
+
+        studentCard.style.backgroundColor =
+            "#f7f7f4";
+
+
+        studentCard.innerHTML = `
+            <h3 style="color:#011935;">
+                ${student.name}
+            </h3>
+
+            <p>
+                <b>Enrollment:</b>
+                ${student.enrollment}
+            </p>
+
+            <p>
+                <b>Department:</b>
+                ${student.department}
+            </p>
+
+            <p>
+                <b>Semester:</b>
+                ${student.semester}
+            </p>
+        `;
+
+
+        studentProfiles.appendChild(
+            studentCard
+        );
+
+    });
+    renderStudentPagination(totalPages);
+    function renderStudentPagination(totalPages) {
+
+    const pagination =
+        document.getElementById(
+            "studentPagination"
+        );
+
+    if (!pagination) {
+        return;
+    }
+
+    pagination.innerHTML = "";
+
+    if (totalPages <= 1) {
+        return;
+    }
+
+
+    /* ---------- PREVIOUS ---------- */
+
+    const previousButton =
+        document.createElement("button");
+
+    previousButton.textContent =
+        "Previous";
+
+    previousButton.disabled =
+        currentStudentPage === 1;
+
+    previousButton.addEventListener(
+        "click",
+        function() {
+
+            if (currentStudentPage > 1) {
+
+                currentStudentPage--;
+
+                renderStudentProfiles();
+
+            }
+
+        }
+    );
+
+    pagination.appendChild(
+        previousButton
+    );
+
+
+    /* ---------- PAGE NUMBERS ---------- */
+
+    for (
+        let page = 1;
+        page <= totalPages;
+        page++
+    ) {
+
+        const pageButton =
+            document.createElement("button");
+
+        pageButton.textContent =
+            page;
+
+        if (
+            page === currentStudentPage
+        ) {
+
+            pageButton.classList.add(
+                "active"
+            );
+
+        }
+
+        pageButton.addEventListener(
+            "click",
+            function() {
+
+                currentStudentPage =
+                    page;
+
+                renderStudentProfiles();
+
+            }
+        );
+
+        pagination.appendChild(
+            pageButton
+        );
+
+    }
+
+
+    /* ---------- NEXT ---------- */
+
+    const nextButton =
+        document.createElement("button");
+
+    nextButton.textContent =
+        "Next";
+
+    nextButton.disabled =
+        currentStudentPage === totalPages;
+
+    nextButton.addEventListener(
+        "click",
+        function() {
+
+            if (
+                currentStudentPage <
+                totalPages
+            ) {
+
+                currentStudentPage++;
+
+                renderStudentProfiles();
+
+            }
+
+        }
+    );
+
+    pagination.appendChild(
+        nextButton
+    );
+
+}
+
+}
+function setupStudentSearch() {
+
+    const searchInput =
+        document.getElementById("studentSearch");
+
+    if (!searchInput) {
+        return;
+    }
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            renderStudentProfiles();
+
+        }
+    );
+
+}
+function setupStudentDepartmentFilter() {
+
+    const departmentFilter =
+        document.getElementById("studentDepartment");
+
+    if (!departmentFilter) {
+        return;
+    }
+
+    departmentFilter.addEventListener(
+        "change",
+        function() {
+
+            renderStudentProfiles();
+
+        }
+    );
+
+}
+function setupStudentSorting() {
+
+    const sortSelect =
+        document.getElementById("studentSort");
+
+    if (!sortSelect) {
+        return;
+    }
+
+    sortSelect.addEventListener(
+        "change",
+        function() {
+
+            renderStudentProfiles();
+
+        }
+    );
+
+}

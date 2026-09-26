@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Technical Fest",
+        "date": "2026-10-10",
+        "category": "Technical",
+        "venue": "College Auditorium",
+        "description": "Technical competitions, workshops and project exhibitions."
+    },
+    {
+        "id": 2,
+        "title": "Sports Week",
+        "date": "2026-10-20",
+        "category": "Sports",
+        "venue": "College Ground",
+        "description": "Annual sports activities and competitions for students."
+    },
+    {
+        "id": 3,
+        "title": "Cultural Fest",
+        "date": "2026-11-05",
+        "category": "Cultural",
+        "venue": "Main Campus",
+        "description": "Music, dance, drama and cultural activities."
+    },
+    {
+        "id": 4,
+        "title": "Coding Competition",
+        "date": "2026-11-15",
+        "category": "Technical",
+        "venue": "Computer Lab",
+        "description": "Programming and problem-solving competition."
+    },
+    {
+        "id": 5,
+        "title": "Career Guidance Seminar",
+        "date": "2026-11-25",
+        "category": "Seminar",
+        "venue": "Seminar Hall",
+        "description": "Career guidance and placement preparation session."
+    }
+]

@@ -79,6 +79,37 @@
                 font-size: 24px;
                 margin-bottom: 20px;
             }
+            /* ================= EVENT SEARCH ================= */
+
+.event-search {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.event-search input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+/* ================= EVENT FILTER ================= */
+
+.event-filter {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.event-filter select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background: white;
+}
 
             table {
                 min-width: 600px;
@@ -105,6 +136,51 @@
             }
 
         }
+        /* ================= EVENT SORTING ================= */
+
+.event-sort {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.event-sort select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background: white;
+}
+/* ================= EVENT PAGINATION ================= */
+
+.event-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.event-pagination button {
+    padding: 8px 12px;
+    border: 1px solid #011935;
+    background: white;
+    color: #011935;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.event-pagination button:hover {
+    background: #011935;
+    color: white;
+}
+
+.event-pagination button.active {
+    background: #011935;
+    color: white;
+}
 
     </style>
 
@@ -180,76 +256,92 @@
         <h2 class="event-title">
             Upcoming College Events
         </h2>
+        <!-- ================= EVENT SEARCH ================= -->
+
+<div class="event-search">
+
+    <input
+        type="text"
+        id="eventSearch"
+        placeholder="Search events..."
+    >
+
+</div>
+<!-- ================= EVENT FILTER ================= -->
+
+<div class="event-filter">
+
+    <select id="eventCategory">
+
+        <option value="all">All Categories</option>
+
+        <option value="Technical">Technical</option>
+
+        <option value="Sports">Sports</option>
+
+        <option value="Cultural">Cultural</option>
+
+        <option value="Seminar">Seminar</option>
+
+    </select>
+
+</div>
+<!-- ================= EVENT SORTING ================= -->
+
+<div class="event-sort">
+
+    <select id="eventSort">
+
+        <option value="default">Sort Events</option>
+
+        <option value="nameAsc">
+            Event Name: A to Z
+        </option>
+
+        <option value="nameDesc">
+            Event Name: Z to A
+        </option>
+
+        <option value="dateAsc">
+            Date: Oldest to Newest
+        </option>
+
+        <option value="dateDesc">
+            Date: Newest to Oldest
+        </option>
+
+    </select>
+
+</div>
 
 
         <table>
 
-            <tr>
+    <thead>
 
-                <th>Event Name</th>
+        <tr>
 
-                <th>Date</th>
+            <th>Event Name</th>
 
-                <th>Venue</th>
+            <th>Date</th>
 
-            </tr>
+            <th>Venue</th>
 
+        </tr>
 
-            <tr>
+    </thead>
 
-                <td>Technical Fest</td>
+    <tbody id="eventsTableBody">
 
-                <td>10 August 2026</td>
+        <!-- Events will be loaded from JSON -->
 
-                <td>College Auditorium</td>
+    </tbody>
 
-            </tr>
+</table>
+<!-- ================= PAGINATION ================= -->
 
+<div id="eventPagination" class="event-pagination"></div>
 
-            <tr>
-
-                <td>Sports Week</td>
-
-                <td>20 August 2026</td>
-
-                <td>College Ground</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Coding Competition</td>
-
-                <td>5 September 2026</td>
-
-                <td>Computer Lab</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Seminar on AI</td>
-
-                <td>15 September 2026</td>
-
-                <td>Seminar Hall</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Cultural Program</td>
-
-                <td>25 September 2026</td>
-
-                <td>Main Stage</td>
-
-            </tr>
-
-        </table>
 
 
         <br>
@@ -286,11 +378,15 @@
 
     <footer>
 
-        <p>
-            © 2028 StudentHub Portal. All Rights Reserved.
-        </p>
+<p><b>StudentHub Portal</b></p>
 
-    </footer>
+<p>Email : studenthub@gmail.com</p>
+
+<p>Phone : +91 9876543210</p>
+
+<p>© 2026 StudentHub Portal</p>
+
+</footer>
 
 
 </body>
