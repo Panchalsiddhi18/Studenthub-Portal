@@ -287,38 +287,6 @@
             }
 
         }
-        .student-search,
-.student-filter {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-.student-search input,
-.student-filter select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #999;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
-    background-color: white;
-}
-.student-sort {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.student-sort select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #999;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
-    background-color: white;
-}
 
     </style>
 
@@ -725,76 +693,7 @@
 
 
 </div>
-<!-- ================= JSON STUDENT PROFILES ================= -->
 
-<div class="profile-box">
-
-    <div class="profile-title">
-        Student Profiles
-    </div>
-    
-
-   <div class="student-search">
-
-    <input
-        type="text"
-        id="studentSearch"
-        placeholder="Search student..."
-    >
-
-</div>
-<div class="student-filter">
-
-    <select id="studentDepartment">
-
-        <option value="all">
-            All Departments
-        </option>
-
-        <option value="Computer Engineering">
-            Computer Engineering
-        </option>
-
-        <option value="Information Technology">
-            Information Technology
-        </option>
-
-    </select>
-
-</div>
-<div class="student-sort">
-
-    <select id="studentSort">
-
-        <option value="default">
-            Sort Students
-        </option>
-
-        <option value="nameAsc">
-            Name: A to Z
-        </option>
-
-        <option value="nameDesc">
-            Name: Z to A
-        </option>
-
-        <option value="enrollmentAsc">
-            Enrollment: Low to High
-        </option>
-
-        <option value="enrollmentDesc">
-            Enrollment: High to Low
-        </option>
-
-    </select>
-
-</div>
-
-<div id="studentProfiles">
-    <!-- Student profiles will be loaded from students.json -->
-</div>
-
-</div>
 
 <!-- ================= FOOTER ================= -->
 
@@ -822,8 +721,6 @@
 <!-- ================= JAVASCRIPT ================= -->
 
 <script src="script.js"></script>
-
-
 
 
 </body>
