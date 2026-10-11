@@ -93,6 +93,7 @@ function checkLogin() {
    4. REGISTRATION VALIDATION
    ========================================================= */
 
+
 function setupRegistrationValidation() {
 
     const registrationForm =
@@ -100,155 +101,113 @@ function setupRegistrationValidation() {
 
     if (!registrationForm) return;
 
+    registrationForm.addEventListener("submit", function (event) {
 
-    registrationForm.addEventListener(
-        "submit",
-        function (event) {
+        const name =
+            document.getElementById("name").value.trim();
 
+        const ID =
+            document.getElementById("Id").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const mobile =
+            document.getElementById("mobile").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        const course =
+            document.getElementById("course").value;
+
+        const year =
+            document.getElementById("year").value;
+
+        const gender =
+            document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+        const terms =
+            document.getElementById("terms");
+
+        const nameRegex =
+            /^[A-Za-z ]{2,50}$/;
+
+        const enrollmentRegex =
+            /^[A-Za-z0-9/-]{5,20}$/;
+
+        const emailRegex =
+            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+        const mobileRegex =
+            /^[6-9][0-9]{9}$/;
+
+        const passwordRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+
+        if (!nameRegex.test(name)) {
             event.preventDefault();
-
-
-            const name =
-                document.getElementById("name").value.trim();
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const mobile =
-                document.getElementById("mobile").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            const confirmPassword =
-                document.getElementById("confirmPassword").value;
-
-            const course =
-                document.getElementById("course").value;
-
-            const year =
-                document.getElementById("year").value;
-
-            const gender =
-                document.querySelector(
-                    'input[name="gender"]:checked'
-                );
-
-            const terms =
-                document.getElementById("terms");
-
-
-            const nameRegex =
-                /^[A-Za-z ]{2,50}$/;
-
-            const emailRegex =
-                /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-            const mobileRegex =
-                /^[6-9][0-9]{9}$/;
-
-            const passwordRegex =
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
-
-
-            if (!nameRegex.test(name)) {
-
-                alert("Please enter a valid name.");
-                return;
-            }
-
-
-            if (!emailRegex.test(email)) {
-
-                alert("Please enter a valid email address.");
-                return;
-            }
-
-
-            if (!mobileRegex.test(mobile)) {
-
-                alert(
-                    "Please enter a valid 10-digit mobile number."
-                );
-
-                return;
-            }
-
-
-            if (!passwordRegex.test(password)) {
-
-                alert(
-                    "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number."
-                );
-
-                return;
-            }
-
-
-            if (password !== confirmPassword) {
-
-                alert("Passwords do not match.");
-                return;
-            }
-
-
-            if (!course) {
-
-                alert("Please select your course.");
-                return;
-            }
-
-
-            if (!year) {
-
-                alert("Please select your year.");
-                return;
-            }
-
-
-            if (!gender) {
-
-                alert("Please select your gender.");
-                return;
-            }
-
-
-            if (!terms || !terms.checked) {
-
-                alert(
-                    "Please accept the terms and conditions."
-                );
-
-                return;
-            }
-
-
-            localStorage.setItem(
-                "registrationData",
-                JSON.stringify({
-                    name: name,
-                    email: email,
-                    mobile: mobile,
-                    course: course,
-                    year: year,
-                    gender: gender.value
-                })
-            );
-
-
-            localStorage.setItem(
-                "studentName",
-                name
-            );
-
-
-            alert("Registration successful!");
-
-            window.location.href = "Home.html";
+            alert("Please enter a valid name.");
+            return;
         }
-    );
-}
 
+        if (!enrollmentRegex.test(ID)) {
+            event.preventDefault();
+            alert("Please enter a valid enrollment ID.");
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            event.preventDefault();
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (!mobileRegex.test(mobile)) {
+            event.preventDefault();
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+            event.preventDefault();
+            alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            event.preventDefault();
+            alert("Passwords do not match.");
+            return;
+        }
+
+        if (!course || !year) {
+            event.preventDefault();
+            alert("Please select your course and year.");
+            return;
+        }
+
+        if (!gender) {
+            event.preventDefault();
+            alert("Please select your gender.");
+            return;
+        }
+
+        if (!terms || !terms.checked) {
+            event.preventDefault();
+            alert("Please accept the terms and conditions.");
+            return;
+        }
+
+        // Allow the valid form to submit to PHP.
+        // Do not prevent default and do not redirect to Home.html.
+    });
+}
 
 /* =========================================================
    5. PROFILE VALIDATION

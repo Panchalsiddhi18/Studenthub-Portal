@@ -269,9 +269,11 @@
 
     <!-- FORM -->
 
-    <form class="registration-form"
-          id="registrationForm"
-          novalidate>
+    
+<form class="registration-form"
+      id="registrationForm"
+      action="process_registration.php"
+      method="POST">
 
 
         <!-- ================= FULL NAME ================= -->
@@ -288,6 +290,21 @@
                 class="registration-input"
                 placeholder="Enter Full Name"
                 autocomplete="name"
+                required>
+
+        </div>
+        <div class="form-group">
+
+            <label for="ID">
+                Entrollment Id :
+            </label>
+
+            <input
+                type="text"
+                id="Id"
+                class="registration-input"
+                placeholder="Enter Entrollment Id"
+                autocomplete="Id"
                 required>
 
         </div>
