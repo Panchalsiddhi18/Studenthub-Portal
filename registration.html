@@ -206,6 +206,15 @@
 
         }
 
+        .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
     </style>
 
 </head>
@@ -269,9 +278,11 @@
 
     <!-- FORM -->
 
-    <form class="registration-form"
-          id="registrationForm"
-          novalidate>
+    
+<form class="registration-form"
+      id="registrationForm"
+      action="process_registration.php"
+      method="POST">
 
 
         <!-- ================= FULL NAME ================= -->
@@ -288,6 +299,21 @@
                 class="registration-input"
                 placeholder="Enter Full Name"
                 autocomplete="name"
+                required>
+
+        </div>
+        <div class="form-group">
+
+            <label for="ID">
+                Entrollment Id :
+            </label>
+
+            <input
+                type="text"
+                id="Id"
+                class="registration-input"
+                placeholder="Enter Entrollment Id"
+                autocomplete="Id"
                 required>
 
         </div>
@@ -447,6 +473,22 @@
             </select>
 
         </div>
+        
+
+<div class="form-group">
+    <label for="semester">Semester:</label>
+    <select id="semester" name="semester" required>
+        <option value="">Select Semester</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+    </select>
+</div>
 
 
         <!-- ================= GENDER ================= -->

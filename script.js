@@ -110,6 +110,7 @@ function setupRegistrationValidation() {
 
             const name =
                 document.getElementById("name").value.trim();
+             
 
             const email =
                 document.getElementById("email").value.trim();
@@ -136,10 +137,13 @@ function setupRegistrationValidation() {
 
             const terms =
                 document.getElementById("terms");
+            const ID = document.getElementById("Id").value.trim();
 
+            const IDRegex = /^[A-Za-z0-9/-]{3,30}$/;
 
             const nameRegex =
                 /^[A-Za-z ]{2,50}$/;
+            
 
             const emailRegex =
                 /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
@@ -156,6 +160,14 @@ function setupRegistrationValidation() {
                 alert("Please enter a valid name.");
                 return;
             }
+            
+
+            if (!IDRegex.test(ID)) {
+                event.preventDefault();
+             alert("Please enter a valid enrollment ID (3-30 letters or numbers).");
+             return;
+            }
+            
 
 
             if (!emailRegex.test(email)) {
@@ -248,6 +260,53 @@ function setupRegistrationValidation() {
         }
     );
 }
+
+function setupSemesterSelection() {
+    const yearSelect = document.getElementById("year");
+    const semesterSelect = document.getElementById("semester");
+
+    if (!yearSelect || !semesterSelect) {
+        return;
+    }
+
+    function updateSemesters() {
+        const year = yearSelect.value;
+
+        const semesters = {
+            "1st Year": ["1", "2"],
+            "2nd Year": ["3", "4"],
+            "3rd Year": ["5", "6"],
+            "4th Year": ["7", "8"]
+        };
+
+        semesterSelect.innerHTML =
+            '<option value="">Select Semester</option>';
+
+        if (semesters[year]) {
+            semesters[year].forEach(function (sem) {
+                const option = document.createElement("option");
+                option.value = sem;
+                option.textContent = "Semester " + sem;
+                semesterSelect.appendChild(option);
+            });
+
+            semesterSelect.disabled = false;
+        } else {
+            semesterSelect.disabled = true;
+        }
+    }
+
+    yearSelect.addEventListener("change", updateSemesters);
+
+    updateSemesters();
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupSemesterSelection);
+} else {
+    setupSemesterSelection();
+}
+
 
 
 /* =========================================================
