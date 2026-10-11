@@ -94,89 +94,89 @@ function checkLogin() {
    ========================================================= */
 
 
+
 function setupRegistrationValidation() {
+    const registrationForm = document.getElementById("registrationForm");
 
-    const registrationForm =
-        document.getElementById("registrationForm");
-
-    if (!registrationForm) return;
+    if (!registrationForm) {
+        console.error("Registration form not found!");
+        return;
+    }
 
     registrationForm.addEventListener("submit", function (event) {
+        const getField = (id) => document.getElementById(id);
 
-        const name =
-            document.getElementById("name").value.trim();
+        const nameField = getField("name");
+        const idField = getField("Id");
+        const emailField = getField("email");
+        const mobileField = getField("mobile");
+        const passwordField = getField("password");
+        const confirmPasswordField = getField("confirmPassword");
+        const courseField = getField("course");
+        const yearField = getField("year");
+        const termsField = getField("terms");
+        const genderField = document.querySelector(
+            'input[name="gender"]:checked'
+        );
 
-        const ID =
-            document.getElementById("Id").value.trim();
+        const requiredFields = {
+            name: nameField,
+            enrollment: idField,
+            email: emailField,
+            mobile: mobileField,
+            password: passwordField,
+            confirmPassword: confirmPasswordField,
+            course: courseField,
+            year: yearField,
+            terms: termsField
+        };
 
-        const email =
-            document.getElementById("email").value.trim();
+        for (const [fieldName, field] of Object.entries(requiredFields)) {
+            if (!field) {
+                event.preventDefault();
+                console.error("Missing HTML field:", fieldName);
+                alert("Form field missing: " + fieldName +
+                      ". Please check registration.html.");
+                return;
+            }
+        }
 
-        const mobile =
-            document.getElementById("mobile").value.trim();
+        const name = nameField.value.trim();
+        const enrollment = idField.value.trim();
+        const email = emailField.value.trim();
+        const mobile = mobileField.value.trim();
+        const password = passwordField.value;
+        const confirmPassword = confirmPasswordField.value;
+        const course = courseField.value;
+        const year = yearField.value;
 
-        const password =
-            document.getElementById("password").value;
-
-        const confirmPassword =
-            document.getElementById("confirmPassword").value;
-
-        const course =
-            document.getElementById("course").value;
-
-        const year =
-            document.getElementById("year").value;
-
-        const gender =
-            document.querySelector(
-                'input[name="gender"]:checked'
-            );
-
-        const terms =
-            document.getElementById("terms");
-
-        const nameRegex =
-            /^[A-Za-z ]{2,50}$/;
-
-        const enrollmentRegex =
-            /^[A-Za-z0-9/-]{5,20}$/;
-
-        const emailRegex =
-            /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-        const mobileRegex =
-            /^[6-9][0-9]{9}$/;
-
-        const passwordRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
-
-        if (!nameRegex.test(name)) {
+        if (!/^[A-Za-z ]{2,50}$/.test(name)) {
             event.preventDefault();
             alert("Please enter a valid name.");
             return;
         }
 
-        if (!enrollmentRegex.test(ID)) {
+        if (!/^[A-Za-z0-9/-]{5,20}$/.test(enrollment)) {
             event.preventDefault();
             alert("Please enter a valid enrollment ID.");
             return;
         }
 
-        if (!emailRegex.test(email)) {
+        if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
             event.preventDefault();
             alert("Please enter a valid email address.");
             return;
         }
 
-        if (!mobileRegex.test(mobile)) {
+        if (!/^[6-9][0-9]{9}$/.test(mobile)) {
             event.preventDefault();
             alert("Please enter a valid 10-digit mobile number.");
             return;
         }
 
-        if (!passwordRegex.test(password)) {
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(password)) {
             event.preventDefault();
-            alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number.");
+            alert("Password must have at least 8 characters, including uppercase, lowercase and a number.");
             return;
         }
 
@@ -192,20 +192,19 @@ function setupRegistrationValidation() {
             return;
         }
 
-        if (!gender) {
+        if (!genderField) {
             event.preventDefault();
             alert("Please select your gender.");
             return;
         }
 
-        if (!terms || !terms.checked) {
+        if (!termsField.checked) {
             event.preventDefault();
-            alert("Please accept the terms and conditions.");
+            alert("Please accept the Terms and Conditions.");
             return;
         }
 
-        // Allow the valid form to submit to PHP.
-        // Do not prevent default and do not redirect to Home.html.
+        // Valid form: allow normal POST submission to process_registration.php.
     });
 }
 
