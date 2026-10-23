@@ -1,34 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudentHub Portal - Registration</title>
 
-    <!-- GOOGLE FONT -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-          rel="stylesheet">
-
-    <!-- YOUR CSS -->
-    <link rel="stylesheet"
-          href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
     <style>
-
-        /* ================= REGISTRATION BOX ================= */
-
         .registration-box {
             width: 100%;
             max-width: 650px;
@@ -36,13 +19,10 @@
             background-color: #e1e1da;
             border: 1px solid #011935;
             border-radius: 10px;
-            padding: 22px;
+            padding: 30px;
             box-sizing: border-box;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
         }
-
-
-        /* ================= TITLE ================= */
 
         .registration-title {
             text-align: center;
@@ -52,22 +32,12 @@
 
         .registration-title h2 {
             margin: 0;
-            font-size: 25px;
-        }
-
-
-        /* ================= FORM ================= */
-
-        .registration-form {
-            width: 100%;
+            font-size: 28px;
         }
 
         .form-group {
             margin-bottom: 18px;
         }
-
-
-        /* ================= LABEL ================= */
 
         .form-group label {
             display: block;
@@ -75,9 +45,6 @@
             font-weight: 600;
             margin-bottom: 7px;
         }
-
-
-        /* ================= INPUT ================= */
 
         .registration-input {
             width: 100%;
@@ -95,9 +62,6 @@
             border: 2px solid #2c5aa0;
         }
 
-
-        /* ================= GENDER ================= */
-
         .gender {
             color: #011935;
             font-size: 15px;
@@ -106,9 +70,6 @@
         .gender input {
             margin-right: 5px;
         }
-
-
-        /* ================= TERMS ================= */
 
         .terms {
             margin-top: 15px;
@@ -128,11 +89,7 @@
 
         .terms a:hover {
             text-decoration: underline;
-            color: #011935;
         }
-
-
-        /* ================= REGISTER BUTTON ================= */
 
         .register-button {
             width: 100%;
@@ -152,9 +109,6 @@
             background-color: #2c5aa0;
         }
 
-
-        /* ================= LOGIN LINK ================= */
-
         .login-link {
             text-align: center;
             margin-top: 20px;
@@ -171,443 +125,257 @@
             text-decoration: underline;
         }
 
-
-        /* ================= DESKTOP ================= */
-
-        @media (min-width: 601px) {
-
+        @media (max-width: 650px) {
             .registration-box {
-                padding: 30px;
-            }
-
-            .registration-title h2 {
-                font-size: 28px;
-            }
-
-        }
-
-
-        /* ================= SMALL MOBILE ================= */
-
-        @media (max-width: 400px) {
-
-            .registration-box {
-                padding: 18px;
+                width: calc(100% - 24px);
+                padding: 20px;
                 margin: 20px auto;
             }
 
             .registration-title h2 {
-                font-size: 22px;
+                font-size: 23px;
             }
-
-            .gender {
-                line-height: 30px;
-            }
-
         }
-
-        .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
     </style>
-
 </head>
-
 
 <body>
 
-
-<!-- ================= HEADER ================= -->
-
 <header>
-
     <div class="header-content">
-
         <div class="header-text">
-
             <h1>StudentHub Portal</h1>
-
         </div>
-
-
-        <!-- PROFILE LOGO -->
 
         <div class="profile">
-
-            <a href="profile.html"
-               title="View Profile">
-
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 16 16">
-
+            <a href="profile.html" title="View Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-
                     <path fill-rule="evenodd"
                           d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
-
                 </svg>
-
             </a>
-
         </div>
-
     </div>
-
 </header>
-
-
-<!-- ================= REGISTRATION ================= -->
 
 <div class="registration-box">
 
-
-    <!-- TITLE -->
-
     <div class="registration-title">
-
         <h2>📝 Student Registration</h2>
-
     </div>
 
-
-    <!-- FORM -->
-
-    
-<form class="registration-form"
-      id="registrationForm"
-      action="process_registration.php"
-      method="POST">
-
-
-        <!-- ================= FULL NAME ================= -->
+    <form class="registration-form"
+          id="registrationForm"
+          action="process_registration.php"
+          method="POST">
 
         <div class="form-group">
-
-            <label for="name">
-                Full Name :
-            </label>
-
-            <input
-                type="text"
-                id="name"
-                class="registration-input"
-                placeholder="Enter Full Name"
-                autocomplete="name"
-                required>
-
-        </div>
-        <div class="form-group">
-
-            <label for="ID">
-                Entrollment Id :
-            </label>
-
-            <input
-                type="text"
-                id="Id"
-                class="registration-input"
-                placeholder="Enter Entrollment Id"
-                autocomplete="Id"
-                required>
-
+            <label for="name">Full Name:</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   class="registration-input"
+                   placeholder="Enter Full Name"
+                   autocomplete="name"
+                   minlength="2"
+                   maxlength="50"
+                   pattern="[A-Za-z ]{2,50}"
+                   required>
         </div>
 
-
-        <!-- ================= EMAIL ================= -->
-
         <div class="form-group">
-
-            <label for="email">
-                Email :
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                class="registration-input"
-                placeholder="Enter Email Address"
-                autocomplete="email"
-                required>
-
+            <label for="Id">Enrollment ID:</label>
+            <input type="text"
+                   id="Id"
+                   name="enrollment"
+                   class="registration-input"
+                   placeholder="Enter Enrollment ID"
+                   autocomplete="off"
+                   minlength="5"
+                   maxlength="20"
+                   required>
         </div>
 
-
-        <!-- ================= MOBILE ================= -->
-
         <div class="form-group">
-
-            <label for="mobile">
-                Mobile Number :
-            </label>
-
-            <input
-                type="tel"
-                id="mobile"
-                class="registration-input"
-                placeholder="Enter 10-digit Mobile Number"
-                maxlength="10"
-                minlength="10"
-                autocomplete="tel"
-                required>
-
+            <label for="email">Email:</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   class="registration-input"
+                   placeholder="Enter Email Address"
+                   autocomplete="email"
+                   required>
         </div>
 
-
-        <!-- ================= PASSWORD ================= -->
-
         <div class="form-group">
-
-            <label for="password">
-                Password :
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                class="registration-input"
-                placeholder="Enter Password"
-                minlength="8"
-                autocomplete="new-password"
-                required>
-
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel"
+                   id="mobile"
+                   name="mobile"
+                   class="registration-input"
+                   placeholder="Enter 10-digit Mobile Number"
+                   minlength="10"
+                   maxlength="10"
+                   pattern="[6-9][0-9]{9}"
+                   autocomplete="tel"
+                   required>
         </div>
 
-
-        <!-- ================= CONFIRM PASSWORD ================= -->
-
         <div class="form-group">
-
-            <label for="confirmPassword">
-                Confirm Password :
-            </label>
-
-            <input
-                type="password"
-                id="confirmPassword"
-                class="registration-input"
-                placeholder="Confirm Password"
-                minlength="8"
-                autocomplete="new-password"
-                required>
-
+            <label for="password">Password:</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   class="registration-input"
+                   placeholder="Enter Password"
+                   minlength="8"
+                   autocomplete="new-password"
+                   required>
+            <small>Use at least 8 characters, including uppercase, lowercase and a number.</small>
         </div>
 
-
-        <!-- ================= COURSE ================= -->
-
         <div class="form-group">
-
-            <label for="course">
-                Course :
-            </label>
-
-            <select
-                id="course"
-                class="registration-input"
-                required>
-
-                <option value="">
-                    Select Course
-                </option>
-
-                <option value="Computer Engineering">
-                    Computer Engineering
-                </option>
-
-                <option value="Information Technology">
-                    Information Technology
-                </option>
-
-                <option value="Computer Science">
-                    Computer Science
-                </option>
-
-                <option value="Electronics Engineering">
-                    Electronics Engineering
-                </option>
-
-            </select>
-
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password"
+                   id="confirmPassword"
+                   name="confirmPassword"
+                   class="registration-input"
+                   placeholder="Confirm Password"
+                   minlength="8"
+                   autocomplete="new-password"
+                   required>
         </div>
 
-
-        <!-- ================= YEAR ================= -->
-
         <div class="form-group">
-
-            <label for="year">
-                Year :
-            </label>
-
-            <select
-                id="year"
-                class="registration-input"
-                required>
-
-                <option value="">
-                    Select Year
-                </option>
-
-                <option value="1st Year">
-                    1st Year
-                </option>
-
-                <option value="2nd Year">
-                    2nd Year
-                </option>
-
-                <option value="3rd Year">
-                    3rd Year
-                </option>
-
-                <option value="4th Year">
-                    4th Year
-                </option>
-
-            </select>
-
-        </div>
-        
-
-<div class="form-group">
-    <label for="semester">Semester:</label>
-    <select id="semester" name="semester" required>
-        <option value="">Select Semester</option>
-        <option value="1">Semester 1</option>
-        <option value="2">Semester 2</option>
-        <option value="3">Semester 3</option>
-        <option value="4">Semester 4</option>
-        <option value="5">Semester 5</option>
-        <option value="6">Semester 6</option>
-        <option value="7">Semester 7</option>
-        <option value="8">Semester 8</option>
-    </select>
-</div>
-
-
-        <!-- ================= GENDER ================= -->
-
-        <div class="form-group">
-
-            <label>
-                Gender :
-            </label>
-
-            <div class="gender">
-
-                <input
-                    type="radio"
-                    name="gender"
-                    value="Male"
+            <label for="course">Course:</label>
+            <select id="course"
+                    name="course"
+                    class="registration-input"
                     required>
-
-                Male
-
-                &nbsp;&nbsp;&nbsp;
-
-                <input
-                    type="radio"
-                    name="gender"
-                    value="Female">
-
-                Female
-
-                &nbsp;&nbsp;&nbsp;
-
-                <input
-                    type="radio"
-                    name="gender"
-                    value="Other">
-
-                Other
-
-            </div>
-
+                <option value="">Select Course</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electronics Engineering">Electronics Engineering</option>
+            </select>
         </div>
 
+        <div class="form-group">
+            <label for="year">Year:</label>
+            <select id="year"
+                    name="year"
+                    class="registration-input"
+                    required>
+                <option value="">Select Year</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+            </select>
+        </div>
 
-        <!-- ================= TERMS ================= -->
+        <div class="form-group">
+            <label for="semester">Semester:</label>
+            <select id="semester"
+                    name="semester"
+                    class="registration-input"
+                    required>
+                <option value="">Select Year First</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="gender">
+                <label style="display:inline;font-weight:normal;">
+                    <input type="radio" name="gender" value="Male" required>
+                    Male
+                </label>
+
+                &nbsp;&nbsp;
+
+                <label style="display:inline;font-weight:normal;">
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+
+                &nbsp;&nbsp;
+
+                <label style="display:inline;font-weight:normal;">
+                    <input type="radio" name="gender" value="Other">
+                    Other
+                </label>
+            </div>
+        </div>
 
         <div class="terms">
-
-            <input
-                type="checkbox"
-                id="terms"
-                required>
-
-            I agree to the
-
-            <a href="#">
-                Terms & Conditions
-            </a>
-
+            <label style="display:inline;font-weight:normal;">
+                <input type="checkbox"
+                       id="terms"
+                       name="terms"
+                       value="accepted"
+                       required>
+                I agree to the
+                <a href="#">Terms &amp; Conditions</a>
+            </label>
         </div>
 
-
-        <!-- ================= REGISTER BUTTON ================= -->
-
-        <button
-            type="submit"
-            class="register-button">
-
+        <button type="submit" class="register-button">
             Register
-
         </button>
-
 
     </form>
 
-
-    <!-- ================= LOGIN LINK ================= -->
-
     <div class="login-link">
-
         Already have an account?
-
-        <a href="login.html">
-            Login Here
-        </a>
-
+        <a href="login.html">Login Here</a>
     </div>
-
 
 </div>
 
-
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
-    <p>
-        <b>StudentHub Portal</b>
-    </p>
-
-    <p>
-        Email : studenthub@gmail.com
-    </p>
-
-    <p>
-        Phone : +91 9876543210
-    </p>
-
-    <p>
-        © 2026 StudentHub Portal
-    </p>
-
+    <p><b>StudentHub Portal</b></p>
+    <p>Email: studenthub@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+    <p>© 2026 StudentHub Portal</p>
 </footer>
 
+<script>
+    const yearSelect = document.getElementById("year");
+    const semesterSelect = document.getElementById("semester");
 
-<!-- ================= JAVASCRIPT ================= -->
+    const semesterOptions = {
+        "1st Year": ["1", "2"],
+        "2nd Year": ["3", "4"],
+        "3rd Year": ["5", "6"],
+        "4th Year": ["7", "8"]
+    };
 
-<script src="script.js"></script>
+    yearSelect.addEventListener("change", function () {
+        semesterSelect.innerHTML =
+            '<option value="">Select Semester</option>';
 
+        const semesters = semesterOptions[this.value] || [];
+
+        semesters.forEach(function (semester) {
+            const option = document.createElement("option");
+            option.value = semester;
+            option.textContent = "Semester " + semester;
+            semesterSelect.appendChild(option);
+        });
+    });
+
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+            event.preventDefault();
+            alert("Password and Confirm Password do not match.");
+        }
+    });
+</script>
 
 </body>
-
 </html>

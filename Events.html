@@ -1,16 +1,17 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>StudentHub Portal - Events</title>
 
     <link rel="stylesheet" href="style.css">
-
     <script src="script.js"></script>
 
     <style>
-
         /* ================= EVENTS BOX ================= */
 
         .event-box {
@@ -29,30 +30,77 @@
             margin-bottom: 30px;
         }
 
+        /* ================= EVENT FILTERS ================= */
+
+        .event-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        .event-search,
+        .event-filter,
+        .event-sort {
+            flex: 1 1 180px;
+            min-width: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .event-search input,
+        .event-filter select,
+        .event-sort select {
+            display: block;
+            width: 100%;
+            height: 42px;
+            padding: 10px 12px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 15px;
+            font-family: inherit;
+            background: white;
+            color: #011935;
+        }
+
+        .event-search input:focus,
+        .event-filter select:focus,
+        .event-sort select:focus {
+            outline: 2px solid #646f7e;
+            outline-offset: 1px;
+        }
 
         /* ================= EVENT TABLE ================= */
 
-        table {
+        .event-table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .event-box table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        th,
-        td {
+        .event-box th,
+        .event-box td {
             border: 1px solid black;
             padding: 12px;
             text-align: center;
         }
 
-        th {
+        .event-box th {
             background-color: #011935;
             color: white;
         }
 
-        tr:nth-child(even) {
+        .event-box tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-
 
         /* ================= PROFILE ICON ================= */
 
@@ -62,6 +110,38 @@
             height: 40px;
         }
 
+        /* ================= PAGINATION ================= */
+
+        .event-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .event-pagination button {
+            padding: 8px 12px;
+            border: 1px solid #011935;
+            background: white;
+            color: #011935;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .event-pagination button:hover,
+        .event-pagination button.active {
+            background: #011935;
+            color: white;
+        }
+
+        /* ================= INSTRUCTIONS ================= */
+
+        .event-box ul {
+            padding-left: 25px;
+            line-height: 1.8;
+        }
 
         /* ================= MOBILE RESPONSIVE ================= */
 
@@ -71,52 +151,32 @@
                 width: 95%;
                 margin: 20px auto;
                 padding: 20px 15px;
-                box-sizing: border-box;
-                overflow-x: auto;
             }
 
             .event-title {
                 font-size: 24px;
                 margin-bottom: 20px;
             }
-            /* ================= EVENT SEARCH ================= */
 
-.event-search {
-    width: 100%;
-    margin-bottom: 20px;
-}
+            .event-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
 
-.event-search input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 15px;
-}
-/* ================= EVENT FILTER ================= */
+            .event-search,
+            .event-filter,
+            .event-sort {
+                width: 100%;
+                flex: 1 1 auto;
+            }
 
-.event-filter {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.event-filter select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 15px;
-    background: white;
-}
-
-            table {
+            .event-box table {
                 min-width: 600px;
             }
 
-            th,
-            td {
+            .event-box th,
+            .event-box td {
                 padding: 10px 8px;
                 font-size: 14px;
             }
@@ -125,270 +185,135 @@
                 font-size: 20px;
             }
 
-            .event-box ul {
-                padding-left: 20px;
-                line-height: 25px;
-            }
-
             .profile svg {
                 width: 32px;
                 height: 32px;
             }
-
         }
-        /* ================= EVENT SORTING ================= */
-
-.event-sort {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.event-sort select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 15px;
-    background: white;
-}
-/* ================= EVENT PAGINATION ================= */
-
-.event-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.event-pagination button {
-    padding: 8px 12px;
-    border: 1px solid #011935;
-    background: white;
-    color: #011935;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.event-pagination button:hover {
-    background: #011935;
-    color: white;
-}
-
-.event-pagination button.active {
-    background: #011935;
-    color: white;
-}
-
     </style>
-
 </head>
 
-
 <body>
-
 
     <!-- ================= HEADER ================= -->
 
     <header>
-
         <div class="header-content">
 
             <div class="header-text">
-
                 <h1>StudentHub Portal</h1>
-
             </div>
 
-
             <div class="profile">
-
                 <a href="profile.html">
-
-                    <svg width="40"
-                         height="40"
-                         viewBox="0 0 24 24"
-                         fill="white"
-                         xmlns="http://www.w3.org/2000/svg">
-
+                    <svg width="40" height="40" viewBox="0 0 24 24"
+                         fill="white" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="8" r="4"></circle>
-
                         <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
-
                     </svg>
-
                 </a>
-
             </div>
 
         </div>
-
     </header>
-
 
     <!-- ================= NAVIGATION ================= -->
 
     <nav>
-
         <a href="home.html">Home</a>
-
         <a href="dashboard.html">Dashboard</a>
-
         <a href="profile.html">Profile</a>
-
         <a href="events.html">Events</a>
-
         <a href="contact.html">Contact</a>
-
         <a href="about.html">About Us</a>
-
         <a href="#" onclick="logout()">Logout</a>
-
     </nav>
-
 
     <!-- ================= EVENTS SECTION ================= -->
 
     <div class="event-box">
 
-        <h2 class="event-title">
-            Upcoming College Events
-        </h2>
-        <!-- ================= EVENT SEARCH ================= -->
+        <h2 class="event-title">Upcoming College Events</h2>
 
-<div class="event-search">
+        <!-- ================= SEARCH, FILTER AND SORT ================= -->
 
-    <input
-        type="text"
-        id="eventSearch"
-        placeholder="Search events..."
-    >
+        <div class="event-controls">
 
-</div>
-<!-- ================= EVENT FILTER ================= -->
+            <div class="event-search">
+                <input
+                    type="text"
+                    id="eventSearch"
+                    placeholder="Search events..."
+                    aria-label="Search events">
+            </div>
 
-<div class="event-filter">
+            <div class="event-filter">
+                <select id="eventCategory" aria-label="Filter by category">
+                    <option value="all">All Categories</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Seminar">Seminar</option>
+                </select>
+            </div>
 
-    <select id="eventCategory">
+            <div class="event-sort">
+                <select id="eventSort" aria-label="Sort events">
+                    <option value="default">Sort Events</option>
+                    <option value="nameAsc">Event Name: A to Z</option>
+                    <option value="nameDesc">Event Name: Z to A</option>
+                    <option value="dateAsc">Date: Oldest to Newest</option>
+                    <option value="dateDesc">Date: Newest to Oldest</option>
+                </select>
+            </div>
 
-        <option value="all">All Categories</option>
+        </div>
 
-        <option value="Technical">Technical</option>
+        <!-- ================= EVENT TABLE ================= -->
 
-        <option value="Sports">Sports</option>
+        <div class="event-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
 
-        <option value="Cultural">Cultural</option>
+                <tbody id="eventsTableBody">
+                    <!-- Events will be loaded from JSON -->
+                </tbody>
+            </table>
+        </div>
 
-        <option value="Seminar">Seminar</option>
+        <!-- ================= PAGINATION ================= -->
 
-    </select>
-
-</div>
-<!-- ================= EVENT SORTING ================= -->
-
-<div class="event-sort">
-
-    <select id="eventSort">
-
-        <option value="default">Sort Events</option>
-
-        <option value="nameAsc">
-            Event Name: A to Z
-        </option>
-
-        <option value="nameDesc">
-            Event Name: Z to A
-        </option>
-
-        <option value="dateAsc">
-            Date: Oldest to Newest
-        </option>
-
-        <option value="dateDesc">
-            Date: Newest to Oldest
-        </option>
-
-    </select>
-
-</div>
-
-
-        <table>
-
-    <thead>
-
-        <tr>
-
-            <th>Event Name</th>
-
-            <th>Date</th>
-
-            <th>Venue</th>
-
-        </tr>
-
-    </thead>
-
-    <tbody id="eventsTableBody">
-
-        <!-- Events will be loaded from JSON -->
-
-    </tbody>
-
-</table>
-<!-- ================= PAGINATION ================= -->
-
-<div id="eventPagination" class="event-pagination"></div>
-
-
+        <div id="eventPagination" class="event-pagination"></div>
 
         <br>
-
 
         <!-- ================= INSTRUCTIONS ================= -->
 
         <h3>Instructions</h3>
 
         <ul>
-
-            <li>
-                Students should register before participating in any event.
-            </li>
-
-            <li>
-                Carry your college ID card during the event.
-            </li>
-
-            <li>
-                Reach the venue 15 minutes before the event starts.
-            </li>
-
-            <li>
-                Follow all college rules and regulations.
-            </li>
-
+            <li>Students should register before participating in any event.</li>
+            <li>Carry your college ID card during the event.</li>
+            <li>Reach the venue 15 minutes before the event starts.</li>
+            <li>Follow all college rules and regulations.</li>
         </ul>
 
     </div>
 
-
     <!-- ================= FOOTER ================= -->
 
     <footer>
-
-<p><b>StudentHub Portal</b></p>
-
-<p>Email : studenthub@gmail.com</p>
-
-<p>Phone : +91 9876543210</p>
-
-<p>© 2026 StudentHub Portal</p>
-
-</footer>
-
+        <p><b>StudentHub Portal</b></p>
+        <p>Email : studenthub@gmail.com</p>
+        <p>Phone : +91 9876543210</p>
+        <p>© 2026 StudentHub Portal</p>
+    </footer>
 
 </body>
-
 </html>
