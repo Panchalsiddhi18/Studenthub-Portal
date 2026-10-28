@@ -558,10 +558,23 @@
 
         </h2>
 
+<div id="loginError" style="color: red; text-align: center;"></div>
 
+<script>
+const params = new URLSearchParams(window.location.search);
+const error = params.get("error");
+
+if (error === "invalid") {
+    document.getElementById("loginError").textContent =
+        "Invalid Email/Username or Password. Please try again.";
+} else if (error === "empty") {
+    document.getElementById("loginError").textContent =
+        "Please enter your Email/Username and Password.";
+}
+</script>
         <!-- LOGIN FORM -->
 
-        <form onsubmit="loginUser(event)">
+        <form method="POST" action="login.php">
 
 
             <!-- EMAIL / USERNAME -->
@@ -582,6 +595,8 @@
                     type="text"
 
                     id="username"
+
+                    name="login"
 
                     class="login-input"
 
@@ -614,6 +629,8 @@
                     type="password"
 
                     id="password"
+
+                    name="password"
 
                     class="login-input"
 

@@ -38,5 +38,13 @@
         "category": "Seminar",
         "venue": "Seminar Hall",
         "description": "Career guidance and placement preparation session."
+    },
+    {
+        "id": 6,
+        "title": "Titans",
+        "date": "2026-12-18",
+        "category": "Technical",
+        "venue": "cspit charusat",
+        "description": "Hackethon"
     }
 ]

@@ -1589,66 +1589,10 @@ function setupLogoutButtons() {
    20. PRIVATE PAGE PROTECTION
    ========================================================= */
 
+
 function protectPrivatePage() {
-
-    const privatePages = [
-
-        "dashboard.html",
-        "Dashboard.html",
-
-        "profile.html",
-        "Profile.html",
-
-        "events.html",
-        "Events.html",
-
-        "feedback.html",
-        "Feedback.html",
-
-        "contact.html",
-        "Contact.html",
-
-        "timetable.html",
-        "Timetable.html",
-
-        "attendance.html",
-        "Attendance.html",
-
-        "fees.html",
-        "Fees.html",
-
-        "result.html",
-        "Result.html"
-
-    ];
-
-
-    const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop();
-
-
-    if (
-        privatePages.includes(
-            currentPage
-        )
-    ) {
-
-        const loggedIn =
-            localStorage.getItem(
-                "loggedIn"
-            );
-
-
-        if (
-            loggedIn !== "true"
-        ) {
-
-            window.location.href =
-                "Login.html";
-        }
-    }
+    // Login protection is handled by PHP sessions.
+    // Do not check localStorage for login status here.
 }
 
 
@@ -2072,7 +2016,7 @@ function loadEventsFromJSON() {
     }
 
 
-    fetch("data/events.json")
+    fetch("StudentEventsAPI.php")
 
         .then(
             function (response) {

@@ -1,0 +1,355 @@
+
+<?php
+session_start();
+
+if (!isset($_SESSION["student_id"])) {
+    header("Location: Login.html");
+    exit;
+}
+
+if (
+    isset($_SESSION["last_activity"]) &&
+    (time() - $_SESSION["last_activity"]) > 900
+) {
+    $_SESSION = [];
+    session_destroy();
+
+    header("Location: Login.html?timeout=1");
+    exit;
+}
+
+$_SESSION["last_activity"] = time();
+
+$studentName = $_SESSION["full_name"] ?? "Student";
+$role = $_SESSION["role"] ?? "student";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub Portal - Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Dashboard layout */
+        .dashboard {
+            width: 100%;
+            max-width: 850px;
+            margin: 25px auto;
+            background: white;
+            padding: 25px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .dashboard h2 {
+            text-align: center;
+            color: #1e3558;
+            margin: 10px 0 30px;
+            font-size: 25px;
+        }
+
+        /* Dashboard boxes */
+        .box-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            width: 100%;
+            margin: 0 auto 30px;
+        }
+
+        .box {
+            min-height: 160px;
+            width: 100%;
+            border: 1px solid #999;
+            background: #cecfcd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .box a {
+            width: 100%;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .box-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .box h3 {
+            color: #2c5aa0;
+            font-size: 20px;
+            margin: 0 0 10px;
+        }
+
+        .box p {
+            color: black;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .box:hover {
+            background: #dcecff;
+            border-color: #3669b5;
+            transform: translateY(-4px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.16);
+        }
+
+        /* Notices */
+        .notice,
+        .info {
+            margin-top: 25px;
+            border: 1px solid gray;
+            padding: 18px;
+            background: #d8e2f1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .notice h3,
+        .info h3 {
+            color: #2c5aa0;
+            margin-top: 0;
+        }
+
+        .notice ul {
+            line-height: 30px;
+            margin-bottom: 5px;
+            padding-left: 25px;
+        }
+
+        .info p {
+            line-height: 1.6;
+        }
+
+        /* Welcome message */
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1e3558;
+        }
+
+        /* Tablet */
+        @media (min-width: 601px) {
+            .dashboard {
+                padding: 30px;
+            }
+
+            .dashboard h2 {
+                font-size: 28px;
+            }
+
+            .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .box,
+            .box a {
+                height: 175px;
+                min-height: 175px;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 901px) {
+            .dashboard {
+                padding: 30px 40px;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 400px) {
+            .dashboard {
+                margin: 20px auto;
+                padding: 18px;
+            }
+
+            .dashboard h2 {
+                font-size: 22px;
+                margin-bottom: 25px;
+            }
+
+            .box,
+            .box a {
+                min-height: 150px;
+            }
+
+            .box a {
+                padding: 12px;
+            }
+
+            .box-icon {
+                font-size: 36px;
+            }
+
+            .box h3 {
+                font-size: 18px;
+            }
+
+            .box p {
+                font-size: 13px;
+            }
+
+            .notice,
+            .info {
+                padding: 15px;
+            }
+
+            .notice ul {
+                padding-left: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <div class="header-text">
+            <h1>StudentHub Portal</h1>
+        </div>
+
+        <div class="profile">
+            <a href="Profile.html" title="View Profile">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="Home.php">Home</a>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="Events.html">Events</a>
+    <a href="Profile.html">Profile</a>
+    <a href="Contact.html">Contact</a>
+    <a href="About.html">About Us</a>
+    <a href="logout.php">Logout</a>
+</nav>
+
+<!-- DASHBOARD -->
+<main class="dashboard">
+
+    <div class="welcome-message">
+        <h2>
+            Welcome to Student Dashboard,
+            <?= htmlspecialchars($studentName, ENT_QUOTES, "UTF-8") ?>!
+        </h2>
+    </div>
+
+    <!-- FOUR DASHBOARD BOXES -->
+    <div class="box-container">
+
+        <!-- TIMETABLE -->
+        <div class="box">
+            <a href="Timetable.html">
+                <div class="box-icon">📅</div>
+                <h3>Time Table</h3>
+                <p>View Weekly Class Schedule</p>
+            </a>
+        </div>
+
+        <!-- ATTENDANCE -->
+        <div class="box">
+            <a href="attendance.html">
+                <div class="box-icon">📊</div>
+                <h3>Attendance</h3>
+                <p>View Your Attendance Details</p>
+            </a>
+        </div>
+
+        <!-- RESULT -->
+        <div class="box">
+            <a href="result.html">
+                <div class="box-icon">📄</div>
+                <h3>Result</h3>
+                <p>View Your Exam Results</p>
+            </a>
+        </div>
+
+        <!-- FEES -->
+        <div class="box">
+            <a href="fees.html">
+                <div class="box-icon">💰</div>
+                <h3>Fees Details</h3>
+                <p>View Your Fee Information</p>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- LATEST NOTICES -->
+    <section class="notice">
+        <h3>Latest Notices</h3>
+
+        <ul>
+            <li>Semester Registration starts from 1 August.</li>
+            <li>Technical Fest registration is now open.</li>
+            <li>Assignment submission date is 25 July.</li>
+            <li>Sports Week will begin next month.</li>
+        </ul>
+    </section>
+
+    <!-- QUICK INFORMATION -->
+    <section class="info">
+        <h3>Quick Information</h3>
+
+        <p>
+            • Welcome to StudentHub Portal.<br><br>
+
+            • Click on <b>Time Table</b> to view your weekly class schedule.<br><br>
+
+            • Click on <b>Attendance</b> to view your attendance details.<br><br>
+
+            • Click on <b>Result</b> to view your examination results.<br><br>
+
+            • Click on <b>Fees Details</b> to view your fee information.<br><br>
+
+            • Stay updated with the latest college notices.
+        </p>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <p><b>StudentHub Portal</b></p>
+    <p>Email : studenthub@gmail.com</p>
+    <p>Phone : +91 9876543210</p>
+    <p>© 2026 StudentHub Portal</p>
+</footer>
+
+</body>
+</html>

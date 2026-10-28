@@ -1,0 +1,494 @@
+
+<?php
+session_start();
+
+if (!isset($_SESSION["student_id"])) {
+    header("Location: Login.html");
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub Portal</title>
+
+    <script src="script.js"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Admin Dashboard Button */
+        .admin-back-btn {
+            display: inline-block;
+            background: #2c5aa0;
+            color: white;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .admin-back-btn:hover {
+            background: #1e4278;
+            color: white;
+        }
+
+        /* Header alignment */
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* =====================================================
+           FULL SCREEN HERO
+        ===================================================== */
+
+        .home-hero {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 145px);
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 25, 53, 0.30);
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translateY(-50%);
+            width: 550px;
+            max-width: 50%;
+            color: white;
+        }
+
+        .hero-text h2 {
+            font-size: 55px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+
+        .hero-text p {
+            font-size: 27px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero-text span {
+            display: block;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .hero-buttons a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #011935;
+            color: white;
+            border: 1px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-buttons a:hover {
+            background-color: #2c5aa0;
+        }
+
+        /* Modal Popup */
+        .modal-popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-popup.show {
+            display: flex;
+        }
+
+        .modal-content-box {
+            width: 450px;
+            max-width: 90%;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .modal-content-box h2 {
+            margin-bottom: 15px;
+            color: #011935;
+        }
+
+        .modal-content-box p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .modal-open-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #011935;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .modal-open-btn:hover {
+            background: #2c5aa0;
+        }
+
+        /* Hero Image Slider */
+        .hero-slider-prev,
+        .hero-slider-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.45);
+            color: white;
+            border: none;
+            font-size: 28px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hero-slider-prev {
+            left: 20px;
+        }
+
+        .hero-slider-next {
+            right: 20px;
+        }
+
+        .hero-slider-prev:hover,
+        .hero-slider-next:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .hero-slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            gap: 8px;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        .hero-dot.active {
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 700px) {
+            .home-hero {
+                height: calc(100vh - 130px);
+            }
+
+            .hero-text {
+                left: 5%;
+                width: 90%;
+                max-width: 90%;
+                text-align: center;
+            }
+
+            .hero-text h2 {
+                font-size: 38px;
+            }
+
+            .hero-text p {
+                font-size: 21px;
+            }
+
+            .hero-text span {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .header-content {
+                justify-content: center;
+            }
+
+            .admin-back-btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+
+        <div class="header-text">
+            <h1>StudentHub Portal</h1>
+        </div>
+
+        <!-- Show only for admin -->
+        <?php if (($_SESSION["role"] ?? "") === "admin"): ?>
+            <a href="AdminDashboard.php" class="admin-back-btn">
+                ← Back to Admin Dashboard
+            </a>
+        <?php endif; ?>
+
+        <!-- Profile Logo -->
+        <div class="profile">
+            <a href="profile.html" title="View Profile">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    <path fill-rule="evenodd"
+                          d="M8 9a5 5 0 0 0-5 5 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5 5 5 0 0 0-5-5z"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+    <a href="Home.php">Home</a>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="events.html">Events</a>
+    <a href="faq.html">FAQ</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About Us</a>
+    <a href="#" onclick="logout(); return false;">Logout</a>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="home-hero">
+
+    <div class="hero-image">
+        <img id="heroSliderImage"
+             src="images/student_portal_sharp_rectangle.png"
+             alt="Students on College Campus">
+
+        <button class="hero-slider-prev" onclick="previousHeroSlide()">❮</button>
+        <button class="hero-slider-next" onclick="nextHeroSlide()">❯</button>
+
+        <div class="hero-slider-dots">
+            <span class="hero-dot active" onclick="showHeroSlide(0)"></span>
+            <span class="hero-dot" onclick="showHeroSlide(1)"></span>
+            <span class="hero-dot" onclick="showHeroSlide(2)"></span>
+        </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-text">
+        <h2>Welcome Students!</h2>
+        <p>Welcome to StudentHub Portal</p>
+
+        <span>
+            StudentHub Portal is a simple website where students can
+            register, login, check events, update profile,
+            give feedback and view important information.
+        </span>
+
+        <div class="hero-buttons">
+            <a href="dashboard.html">Explore Dashboard</a>
+            <a href="events.html">View Events</a>
+        </div>
+    </div>
+
+</section>
+
+<!-- PORTAL FEATURES -->
+<div class="content">
+    <h2 style="text-align:center;">Portal Features</h2>
+
+    <div class="features">
+        <div class="box">
+            <h3>Login</h3>
+            <p>Students can login using their email and password.</p>
+        </div>
+
+        <div class="box">
+            <h3>Registration</h3>
+            <p>Create a new student account.</p>
+        </div>
+
+        <div class="box">
+            <h3>Dashboard</h3>
+            <p>View notices and important updates.</p>
+        </div>
+
+        <div class="box">
+            <h3>Profile</h3>
+            <p>Update personal information.</p>
+        </div>
+
+        <div class="box">
+            <h3>Events</h3>
+            <p>View upcoming college events.</p>
+        </div>
+
+        <div class="box">
+            <h3>Feedback</h3>
+            <p>Give suggestions about the portal.</p>
+        </div>
+    </div>
+</div>
+
+<!-- LATEST NEWS -->
+<div class="content">
+    <h2>Latest News</h2>
+    <ul>
+        <li>Semester Registration starts from 1 August.</li>
+        <li>Technical Fest registration is open.</li>
+        <li>Sports Week will begin next month.</li>
+        <li>Assignment submission date is 25 July.</li>
+    </ul>
+</div>
+
+<!-- WHY STUDENTHUB -->
+<div class="content">
+    <h2>Why Use StudentHub?</h2>
+    <p>
+        ✔ Easy to use
+        <br><br>
+        ✔ Student Friendly
+        <br><br>
+        ✔ Access Important Information
+        <br><br>
+        ✔ View College Events
+        <br><br>
+        ✔ Contact College Staff
+    </p>
+</div>
+
+<!-- MODAL OPEN BUTTON -->
+<div style="text-align:center; margin:30px 0;">
+    <button class="modal-open-btn" onclick="openStudentModal()">
+        📢 View Student Notice
+    </button>
+</div>
+
+<!-- MODAL -->
+<div id="studentModal" class="modal-popup">
+    <div class="modal-content-box">
+
+        <span class="modal-close" onclick="closeStudentModal()">
+            &times;
+        </span>
+
+        <h2>StudentHub Notice</h2>
+
+        <p>Welcome to StudentHub Portal!</p>
+
+        <p>
+            Check the latest college updates, events,
+            registration information and important notices
+            through the portal.
+        </p>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><b>StudentHub Portal</b></p>
+    <p>Email : studenthub@gmail.com</p>
+    <p>Phone : +91 9876543210</p>
+    <p>© 2026 StudentHub Portal</p>
+</footer>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
